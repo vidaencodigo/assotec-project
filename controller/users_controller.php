@@ -20,6 +20,10 @@ class UsersController
         //  generates the one-time token
         $_SESSION['token'] =  bin2hex(random_bytes(35));
         // view
+        if (isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
         require_once('view/usuarios/user_form.php');
     }
 

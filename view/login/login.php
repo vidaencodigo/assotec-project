@@ -46,19 +46,30 @@
                 <h3>Bienvenido</h3>
                 <h4>Ingresa tus credenciales</h4>
             </div>
-            <form>
+            <form action="index.php?controller=login&action=login" method="post">
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                 <div class="mb-3">
                     <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="username" aria-describedby="usuarioHelp">
+                    <input type="text" class="form-control" name="username" id="username" aria-describedby="usuarioHelp" autofocus>
                     <div id="usuarioHelp" class="form-text">No compartas tu usuario y contrasela con nadie.</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" name="password" class="form-control" id="password">
 
                 </div>
                 <div class="center__items">
                     <button type="submit" class="btn btn-max-width btn-primary">Inicia sesión</button>
+                </div>
+                <div class="errors py-2">
+                    <?php if (isset($_REQUEST['msg'])) : ?>
+
+                        <?php if ($_REQUEST['msg'] == "pwderr") : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Credenciales invalidas, vuelve a intentar
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </form>
         </section>

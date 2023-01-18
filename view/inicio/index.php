@@ -39,12 +39,23 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=login&action=index">Inicia sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=index">Registrate</a>
-                        </li>
+
+                        <?php if (isset($_SESSION['session'])) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"><?=$_SESSION['username']?></a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=login&action=logout">Cierra sesión</a>
+                            </li>
+                        <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=login&action=index">Inicia sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=index">Registrate</a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
 
