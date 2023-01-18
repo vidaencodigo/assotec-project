@@ -1,0 +1,4 @@
+
+
+# ignora const.php
+core/*const.php
