@@ -35,6 +35,21 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
 
+                    <?php if (isset($_SESSION['session'])) : ?>
+                        <?php if ($_SESSION['rol'] == "maestro") : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Registrar horarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Registrar materias</a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['rol'] == "alumno") : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Lista de asesores</a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
 
                 </ul>
                 <div class="d-flex">
@@ -42,8 +57,8 @@
 
                         <?php if (isset($_SESSION['session'])) : ?>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><?=$_SESSION['username']?></a>
-                                
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"><?= $_SESSION['username'] ?></a>
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.php?controller=login&action=logout">Cierra sesión</a>

@@ -58,39 +58,55 @@
             <h4 class="text-center">Registro nuevos usuarios(alumnos)</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
 
-                <form method="post" action="index.php?controller=users&action=save_">
+                <form method="post" action="index.php?controller=users&action=save_" class="needs-validation" novalidate>
 
                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" class="form-control" name="name" id="name" required>
+                        <div class="invalid-feedback">
+                            Nombre requerido
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="lastname" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname">
+                        <input type="text" class="form-control" name="lastname" id="lastname" required>
+                        <div class="invalid-feedback">
+                            Apellido(s) requerido
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo eléctronico</label>
-                        <input type="mail" class="form-control" name="mail" id="mail">
+                        <input type="mail" class="form-control" name="mail" id="mail" required>
+                        <div class="invalid-feedback">
+                            Correo requerido
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="username" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="username" id="username">
+                        <input type="text" class="form-control" name="username" id="username" required>
+                        <div class="invalid-feedback">
+                            Nombre de usuario requerido
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" id="password">
-
+                        <input type="password" class="form-control" name="password" id="password" required>
+                        <div class="invalid-feedback">
+                            Contraseña requerido
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Repite Contraseña</label>
-                        <input type="password" class="form-control" name="r_password" id="r_password">
-
+                        <input type="password" class="form-control" name="r_password" id="r_password" required>
+                        <div class="invalid-feedback">
+                            Repite Contraseña requerido
+                        </div>
                     </div>
 
                     <div class="center__items">
@@ -126,6 +142,7 @@
 
     </div>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/form_validate.js"></script>
 </body>
 
 </html>

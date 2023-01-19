@@ -27,6 +27,26 @@ class UsersController
         require_once('view/usuarios/user_form.php');
     }
 
+    public function profile(){
+         /** 
+         * CSRF TOKEN
+         * PREVENT cross-site request ATACKS
+         * Using a simple unique code between request 
+         * more in https://www.w3.org/Security/wiki/Cross_Site_Attacks
+         */
+
+        //  generates the one-time token
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        // view
+
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+        echo $_SESSION['username'];
+    }
+
     public function save_()
     {
 

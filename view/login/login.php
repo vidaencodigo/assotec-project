@@ -46,17 +46,22 @@
                 <h3>Bienvenido</h3>
                 <h4>Ingresa tus credenciales</h4>
             </div>
-            <form action="index.php?controller=login&action=login" method="post">
+            <form action="index.php?controller=login&action=login" method="post"  class="needs-validation" novalidate>
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                 <div class="mb-3">
                     <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" name="username" id="username" aria-describedby="usuarioHelp" autofocus>
+                    <input type="text" class="form-control" name="username" id="username" aria-describedby="usuarioHelp" required autofocus>
                     <div id="usuarioHelp" class="form-text">No compartas tu usuario y contrasela con nadie.</div>
+                    <div class="invalid-feedback">
+                        Usuario requerido
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" name="password" class="form-control" id="password">
-
+                    <input type="password" name="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">
+                        Contraseña Requerida
+                    </div>
                 </div>
                 <div class="center__items">
                     <button type="submit" class="btn btn-max-width btn-primary">Inicia sesión</button>
@@ -75,6 +80,7 @@
         </section>
     </div>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/form_validate.js"></script>
 </body>
 
 </html>
