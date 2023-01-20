@@ -67,29 +67,28 @@
                     <br>
 
                 <?php endif; ?>
-                <p style="font-size: 14px;">
-                    <a href="index.php?controller=users&action=change_image_profile">
 
-                        Cambiar imagen
-                    </a>
-                </p>
 
                 <p>
                     <?= $usuario->user ?>
                 </p>
             </section>
             <section class="profile_details col-8 ">
+                <h3>Cambia la imagen de perfil</h3>
                 <p>
                     <?= $usuario->name . " " . $usuario->last_name ?>
                 </p>
-                <p>
-                    <?= $usuario->mail ?>
-                </p>
+
 
                 <hr>
-                <?php if ($_SESSION['rol']=='alumno') : ?>
-                    Hola alumno
-                <?php endif; ?>
+                <form action="index.php?controller=users&action=save_image" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" name="image_profile" id="image_profile" accept="image/png, image/jpeg">
+                        <label class="input-group-text" for="image_profile">Imagen</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
             </section>
         </div>
     </div>

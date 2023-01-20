@@ -51,7 +51,7 @@
                 <div class="mb-3">
                     <label for="username" class="form-label">Usuario</label>
                     <input type="text" class="form-control" name="username" id="username" aria-describedby="usuarioHelp" required autofocus>
-                    <div id="usuarioHelp" class="form-text">No compartas tu usuario y contrasela con nadie.</div>
+                    <div id="usuarioHelp" class="form-text">No compartas tu usuario y contraseña con nadie.</div>
                     <div class="invalid-feedback">
                         Usuario requerido
                     </div>

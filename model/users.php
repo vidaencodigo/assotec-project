@@ -101,4 +101,21 @@ class User extends Crud
       echo $e->getMessage();
     }
   }
+
+
+  public function update_image()
+  {
+    try {
+      //code...
+      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET profile_image=? WHERE id=?");
+      $stm->execute(array(
+       
+        $this->profile_image,
+        $this->id
+      ));
+    } catch (PDOException $e) {
+      //throw $e;
+      echo $e->getMessage();
+    }
+  }
 }
