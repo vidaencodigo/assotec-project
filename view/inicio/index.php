@@ -38,11 +38,12 @@
                     <?php if (isset($_SESSION['session'])) : ?>
                         <?php if ($_SESSION['rol'] == "maestro") : ?>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Registrar horarios</a>
+                                <a class="nav-link active" aria-current="page" href="#">Agenda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Registrar materias</a>
                             </li>
+                          
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == "alumno") : ?>
                             <li class="nav-item">

@@ -3,11 +3,13 @@ require_once "model/users.php";
 
 class UsersController
 {
+    private $url_templates = "view/usuarios/";
     private $user;
     public function __construct()
     {
         $this->user = new User();
     }
+    
     public function index()
     {
         /** 
@@ -24,11 +26,12 @@ class UsersController
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
-        require_once('view/usuarios/user_form.php');
+        require_once($this->url_templates."user_form.php");
     }
 
-    public function profile(){
-         /** 
+    public function profile()
+    {
+        /** 
          * CSRF TOKEN
          * PREVENT cross-site request ATACKS
          * Using a simple unique code between request 
@@ -43,8 +46,10 @@ class UsersController
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
+        $usuario = $this->user->get_by_username($_SESSION['username']);
 
-        echo $_SESSION['username'];
+        
+        require_once($this->url_templates."profile.php");
     }
 
     public function save_()
@@ -82,7 +87,7 @@ class UsersController
                     $usuario->name = $name;
                     $usuario->last_name = $lastname;
                     $usuario->mail = $mail;
-                    $usuario->password = password_hash($password, PASSWORD_DEFAULT); 
+                    $usuario->password = password_hash($password, PASSWORD_DEFAULT);
                     $usuario->user_type = "alumno";
                     $usuario->create();
                     header("Location: index.php?controller=users&action=index&msg=success");
