@@ -32,7 +32,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
 
 
@@ -59,7 +59,7 @@
 
             <section class="profile col-4 text-center">
                 <?php if ($usuario->profile_image) : ?>
-                    <img src="data:image/png;base64,<?=base64_encode($usuario->profile_image)?>"  class="img-thumbnail" alt="Imagen de perfil">
+                    <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
                 <?php else : ?>
                     <div style="margin:auto; display:flex; align-items:center;justify-content:center; width:200px; height:200px; border-radius:50%; background-color:#737373; color:#fff;">
                         no image
@@ -77,17 +77,53 @@
                 <p>
                     <?= $usuario->user ?>
                 </p>
-            </section>
-            <section class="profile_details col-8 ">
-                <p>
-                    <?= $usuario->name . " " . $usuario->last_name ?>
-                </p>
                 <p>
                     <?= $usuario->mail ?>
                 </p>
 
+                <p>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Cambiar contraseña</a>
+                </p>
+            </section>
+            <section class="profile_details col-8 ">
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Editar perfil</strong>
+                        <form method="post" action="index.php?controller=users&action=profile_update" class="needs-validation" novalidate>
+                            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="name" id="name" value="<?= $usuario->name ?>" required>
+                                <div class="invalid-feedback">
+                                    Nombre requerido
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Apellidos</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" value="<?= $usuario->last_name ?>" required>
+                                <div class="invalid-feedback">
+                                    Apellidos requerido
+                                </div>
+                            </div>
+                            <p>
+                                <button type="submit" class="btn btn-success" style="width: 100%;">Guardar cambios</button>
+                            </p>
+
+                            <p>
+                                <a href="#" class="btn btn-danger" style="width: 100%;">Eliminar mi perfil</a>
+                            </p>
+
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" class="btn btn-secondary" style="width: 100%;">Ver mis asesorias</a>
+                    </div>
+                </div>
+
+
                 <hr>
-                <?php if ($_SESSION['rol']=='alumno') : ?>
+                <?php if ($_SESSION['rol'] == 'alumno') : ?>
                     Hola alumno
                 <?php endif; ?>
             </section>

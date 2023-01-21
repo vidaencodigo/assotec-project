@@ -118,4 +118,21 @@ class User extends Crud
       echo $e->getMessage();
     }
   }
+
+  public function update_profile()
+  {
+    try {
+      //code...
+      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET name=?, last_name=? WHERE id=?");
+      $stm->execute(array(
+       
+        $this->name,
+        $this->last_name,
+        $this->id
+      ));
+    } catch (PDOException $e) {
+      //throw $e;
+      echo $e->getMessage();
+    }
+  }
 }

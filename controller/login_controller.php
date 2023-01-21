@@ -62,7 +62,7 @@ class LoginController
                 }
             } else {
 
-                header("Location: index.php?controller=login&action=index");
+                header("Location: index.php?controller=login&action=index&msg=pwderr");
             }
         }
     }

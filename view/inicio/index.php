@@ -32,7 +32,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
 
                     <?php if (isset($_SESSION['session'])) : ?>
@@ -43,7 +43,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Registrar materias</a>
                             </li>
-                          
+
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == "alumno") : ?>
                             <li class="nav-item">
@@ -58,8 +58,10 @@
 
                         <?php if (isset($_SESSION['session'])) : ?>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"><?= $_SESSION['username'] ?></a>
 
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile">
+                                    <?= $_SESSION['username'] ?>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.php?controller=login&action=logout">Cierra sesión</a>

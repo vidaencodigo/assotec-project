@@ -51,7 +51,32 @@ class UsersController
 
         require_once($this->url_templates . "profile.php");
     }
+    public function profile_update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") :
+            $token = $_REQUEST['token'];
+            // VALID TOKEN
+            if (!$token || $token !== $_SESSION['token']) {
+                // show an error message 
+                echo '<p class="error">Error: invalid form submission</p>';
+                // return 405 http status code
+                header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
+                exit;
+            }
 
+            $usuarioexist = $this->user->get_by_username($_SESSION['username']);
+            $id_user = $usuarioexist->id;
+            $usuario = new User();
+            $usuario->id = $id_user;
+            $usuario->name = $_REQUEST['name'];
+            $usuario->last_name = $_REQUEST['last_name'];
+            $usuario->update_profile();
+
+            header("Location: index.php?controller=users&action=profile");
+
+
+        endif;
+    }
     public function change_image_profile()
     {
         /** 
@@ -100,9 +125,9 @@ class UsersController
                 $usuario->profile_image = $imgContenido;
                 $usuario->update_image();
             endif;
-           
+
             header("Location: index.php?controller=users&action=profile");
-            
+
 
         endif;
     }
