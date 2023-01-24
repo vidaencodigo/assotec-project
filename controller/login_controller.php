@@ -50,13 +50,18 @@ class LoginController
             if ($usuarioexist) {
 
                 if (password_verify($password,  $usuarioexist->password)) {
-                    // sessiones con valor
-                    $_SESSION['session'] = true;
-                    $_SESSION["username"] = $usuarioexist->user;
-                    $_SESSION["name"] = $usuarioexist->name;
-                    $_SESSION["rol"] = $usuarioexist->user_type;
 
-                    header("Location: index.php?controller=index&action=index");
+                    if ($usuarioexist->status == "active") :
+                        // sessiones con valor
+                        $_SESSION['session'] = true;
+                        $_SESSION["username"] = $usuarioexist->user;
+                        $_SESSION["name"] = $usuarioexist->name;
+                        $_SESSION["rol"] = $usuarioexist->user_type;
+
+                        header("Location: index.php?controller=index&action=index");
+                    else:
+                        header("Location: index.php?controller=login&action=index&msg=usrerr");
+                    endif;
                 } else {
                     header("Location: index.php?controller=login&action=index&msg=pwderr");
                 }

@@ -74,6 +74,12 @@
                                 Credenciales invalidas, vuelve a intentar
                             </div>
                         <?php endif; ?>
+
+                        <?php if ($_REQUEST['msg'] == "usrerr") : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Usuario dado de baja, para reactivar comunicate con un administrador
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </form>

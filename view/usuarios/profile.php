@@ -82,7 +82,7 @@
                 </p>
 
                 <p>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Cambiar contraseña</a>
+                    <a href="#" class="btn btn-primary" style="width: 100%;" >Cambiar contraseña</a>
                 </p>
             </section>
             <section class="profile_details col-8 ">
@@ -111,13 +111,15 @@
                             </p>
 
                             <p>
-                                <a href="#" class="btn btn-danger" style="width: 100%;">Eliminar mi perfil</a>
+                                <a href="#" class="btn btn-danger" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Eliminar mi perfil</a>
                             </p>
 
                         </form>
                     </div>
                     <div class="col-6">
-                        <a href="#" class="btn btn-secondary" style="width: 100%;">Ver mis asesorias</a>
+                        <?php if ($_SESSION['rol'] == "maestro") : ?>
+                            <a href="#" class="btn btn-secondary" style="width: 100%;">Ver mis asesorias</a>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -129,9 +131,12 @@
             </section>
         </div>
     </div>
-
+    <?php require_once "./view/usuarios/modal_delete.php" ?>
+    
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
 </body>
 
 </html>
+
+

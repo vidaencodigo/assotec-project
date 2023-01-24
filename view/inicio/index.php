@@ -36,6 +36,11 @@
                     </li>
 
                     <?php if (isset($_SESSION['session'])) : ?>
+                        <?php if ($_SESSION['rol'] == "administrador") : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=nuevo_maestro_view">Registrar maestros</a>
+                            </li>
+                        <?php endif; ?>
                         <?php if ($_SESSION['rol'] == "maestro") : ?>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Agenda</a>

@@ -51,6 +51,35 @@ class UsersController
 
         require_once($this->url_templates . "profile.php");
     }
+
+    public function nuevo_maestro_view()
+    {
+        /** 
+         * CSRF TOKEN
+         * PREVENT cross-site request ATACKS
+         * Using a simple unique code between request 
+         * more in https://www.w3.org/Security/wiki/Cross_Site_Attacks
+         */
+
+        //  generates the one-time token
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        // view
+        if (!isset($_SESSION['session'])) :
+
+            header("Location: index.php?controller=index&action=index");
+            exit;
+
+        endif;
+
+        if ($_SESSION['rol'] != 'administrador') :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+
+
+        require_once($this->url_templates . "nuevo_maestro.php");
+    }
     public function profile_update()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") :
@@ -176,6 +205,84 @@ class UsersController
                 header("Location: index.php?controller=users&action=index&msg=pwderr");
             }
         }
+    }
+    public function save_maestro()
+    {
+
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            // GET ACTUAL TOKEN
+            $token = $_REQUEST['token'];
+
+            $name = $_REQUEST['name'];
+            $lastname = $_REQUEST['lastname'];
+            $mail = $_REQUEST['mail'];
+            $username = $_REQUEST['username'];
+            $password = $_REQUEST['password'];
+            $r_password = $_REQUEST['r_password'];
+
+            // VALID TOKEN
+            if (!$token || $token !== $_SESSION['token']) {
+                // show an error message 
+                echo '<p class="error">Error: invalid form submission</p>';
+                // return 405 http status code
+                header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
+                exit;
+            }
+            if (validPassword($password, $r_password)) { //valida que sea el mismo pwd
+                $usuarioexist = $this->user->get_by_username($username);
+                $mailexist = $this->user->get_by_mail($mail);
+                if ($usuarioexist || $mailexist) {
+                    header("Location: index.php?controller=users&action=index&msg=usrerr");
+                } else {
+                    // SAVE USER
+                    $usuario = $this->user;
+                    $usuario->username = $username;
+                    $usuario->name = $name;
+                    $usuario->last_name = $lastname;
+                    $usuario->mail = $mail;
+                    $usuario->password = password_hash($password, PASSWORD_DEFAULT);
+                    $usuario->user_type = "maestro";
+                    $usuario->create();
+                    header("Location: index.php?controller=users&action=index&msg=success");
+                }
+            } else {
+                header("Location: index.php?controller=users&action=index&msg=pwderr");
+            }
+        }
+    }
+
+    public function set_user_innactive()
+    {
+        /** 
+         * CSRF TOKEN
+         * PREVENT cross-site request ATACKS
+         * Using a simple unique code between request 
+         * more in https://www.w3.org/Security/wiki/Cross_Site_Attacks
+         */
+
+        //  generates the one-time token
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        // view
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+
+
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+        // remove all session variables
+        $user = new User();
+        $user->id = $usuario->id;
+        $user->status="inactive";
+        $user->set_to_innactive();
+        session_unset();
+
+        // destroy the session
+        session_destroy();
+        echo "<h1> El usuario con id: " . $usuario->id . " Ha sido dado de baja";
+        //require_once($this->url_templates . "image_form.php");
     }
 }
 

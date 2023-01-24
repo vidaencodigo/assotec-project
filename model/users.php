@@ -13,7 +13,7 @@ class User extends Crud
   public $profile_image;
   public $created_at;
   public $updated_at;
-  public $estatus;
+  public $status;
   const TABLE = 'users_table';
   private $pdo;
   public function __construct()
@@ -128,6 +128,22 @@ class User extends Crud
        
         $this->name,
         $this->last_name,
+        $this->id
+      ));
+    } catch (PDOException $e) {
+      //throw $e;
+      echo $e->getMessage();
+    }
+  }
+
+  public function set_to_innactive()
+  {
+    try {
+      //code...
+      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET status=? WHERE id=?");
+      $stm->execute(array(
+       
+        $this->status,
         $this->id
       ));
     } catch (PDOException $e) {
