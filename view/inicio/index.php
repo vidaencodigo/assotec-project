@@ -46,7 +46,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Agenda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Registrar materias</a>
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
                             </li>
 
                         <?php endif; ?>
