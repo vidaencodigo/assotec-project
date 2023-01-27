@@ -64,51 +64,71 @@
     </nav>
 
     <div class="container">
-        <section class="action py-5">
-            <h4 class="text-center">Registra materia</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="row mx-auto mt-5">
 
-                <form method="post" action="index.php?controller=subject&action=post_save_subject" class="needs-validation" novalidate>
-
-                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
-
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="name" id="name" required>
-                        <div class="invalid-feedback">
-                            Nombre requerido
-                        </div>
+            <section class="profile col-4 text-center">
+                <?php if ($usuario->profile_image) : ?>
+                    <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
+                <?php else : ?>
+                    <div style="margin:auto; display:flex; align-items:center;justify-content:center; width:200px; height:200px; border-radius:50%; background-color:#737373; color:#fff;">
+                        no image
                     </div>
+                    <br>
+
+                <?php endif; ?>
+                <p style="font-size: 14px;">
+                    <a href="index.php?controller=users&action=change_image_profile">
+
+                        Cambiar imagen
+                    </a>
+                </p>
+
+                <p>
+                    <?= $usuario->user ?>
+                </p>
+                <p>
+                    <?= $usuario->mail ?>
+                </p>
 
 
+            </section>
+            <section class="profile_details col-8 ">
+                <div class="row">
+                    <div class="col-8">
 
+                        <?php if ($_SESSION['rol'] == 'alumno') : ?>
+                            Hola alumno
+                        <?php endif; ?>
+                        <?php if ($_SESSION['rol'] == 'maestro') : ?>
+                            <h3>
 
-                    <div class="center__items">
-                        <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
-                    </div>
+                                Mis materias
+                            </h3>
+                            <?php if ($this->subject->get_all_active($usuario->id)) : ?>
+                                <ul class="list-group">
+                                    <?php foreach ($user_subject as $materia) : ?>
+                                        <li class="list-group-item list-group-item-info"><?= $materia->name; ?>
+                                            ||
+                                            <a href="index.php?controller=schedule&action=get_form_schedule&subjectId=<?= $materia->id; ?>" class="btn btn-link"> Registrar o ver dias</a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
 
-                    <div class="errors py-2">
-                        <?php if (isset($_REQUEST['msg'])) : ?>
-                            <?php if ($_REQUEST['msg'] == "success") : ?>
-                                <div class="alert alert-success" role="alert">
-                                    Materia guardada
-                                </div>
                             <?php endif; ?>
-                            <?php if ($_REQUEST['msg'] == "subject_exists") : ?>
-                                <div class="alert alert-danger" role="alert">
-                                    Materia ya esta registrada
-                                </div>
-                            <?php endif; ?>
-
                         <?php endif; ?>
                     </div>
-                </form>
-            </div>
-        </section>
+
+
+                </div>
+                <hr>
 
 
 
+            </section>
+        </div>
     </div>
+    <?php require_once "./view/usuarios/modal_delete.php" ?>
+
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
 </body>

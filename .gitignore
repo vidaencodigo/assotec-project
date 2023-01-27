@@ -2,3 +2,5 @@
 
 # ignora const.php
 core/*const.php
+core/*const_MYSQL.php
+core/*const_pgsql.php

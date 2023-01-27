@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
+                    <?php if ($_SESSION['rol'] == "maestro") : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Agenda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subects">Mis materias</a>
+                        </li>
 
+                    <?php endif; ?>
 
                 </ul>
                 <div class="d-flex">
@@ -82,7 +93,7 @@
                 </p>
 
                 <p>
-                    <a href="#" class="btn btn-primary" style="width: 100%;" >Cambiar contraseña</a>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Cambiar contraseña</a>
                 </p>
             </section>
             <section class="profile_details col-8 ">
@@ -128,15 +139,30 @@
                 <?php if ($_SESSION['rol'] == 'alumno') : ?>
                     Hola alumno
                 <?php endif; ?>
+                <?php if ($_SESSION['rol'] == 'maestro') : ?>
+                    <h3>
+
+                        Mis materias
+                    </h3>
+                    <?php if ($this->subject->get_all_active($usuario->id)) : ?>
+                        <ul class="list-group">
+                            <?php foreach ($user_subject as $materia) : ?>
+                                <li class="list-group-item list-group-item-info"><?= $materia->name; ?>
+                                    ||
+                                    <a href="index.php?controller=schedule&action=get_form_schedule&subjectId=<?= $materia->id; ?>" class="btn btn-link"> Registrar o ver dias</a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+
+                    <?php endif; ?>
+                <?php endif; ?>
             </section>
         </div>
     </div>
     <?php require_once "./view/usuarios/modal_delete.php" ?>
-    
+
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
 </body>
 
 </html>
-
-

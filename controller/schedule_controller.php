@@ -1,17 +1,23 @@
 <?php
 require_once "model/users.php";
 require_once "model/subject.php";
-class SubjectController
+require_once "model/schedule.php";
+
+class ScheduleController
 {
-    private $url_templates = "view/subject/";
+    private $url_templates = "view/schedule/";
     private $user;
     private $subject;
+    private $schedule;
     public function __construct()
     {
         $this->user = new User();
         $this->subject = new SubjectModel();
+        $this->schedule = new ScheduleModel();
     }
-    public function get_index()
+
+
+    public function get_form_schedule()
     {
         /** 
          * CSRF TOKEN
@@ -33,35 +39,20 @@ class SubjectController
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
-        require_once($this->url_templates . "nueva_materia.php");
-    }
-
-    public function get_user_subects()
-    {
-        //  generates the one-time token
-        $_SESSION['token'] =  bin2hex(random_bytes(35));
-        // view
-
-        if (!isset($_SESSION['session'])) :
-            header("Location: index.php?controller=index&action=index");
-            exit;
-        endif;
-        if (isset($_SESSION['rol']) != "maestro") :
-            header("Location: index.php?controller=index&action=index");
-            exit;
-        endif;
 
         $usuario = $this->user->get_by_username($_SESSION['username']);
-        $user_subject = $this->subject->get_all_active($usuario->id);
-
-        require_once($this->url_templates . "profile_subjects.php");
+        $subject = $this->subject->get_by_id($_REQUEST['subjectId']);
+        $schedule = $this->schedule->show_by_username($usuario->id, $subject->id);
+        require_once($this->url_templates . "new_form.php");
     }
-    public function post_save_subject()
+
+    public function post_save_schedule()
     {
         if (!isset($_SESSION['session'])) :
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") :
             $token = $_REQUEST['token'];
             // VALID TOKEN
@@ -72,20 +63,24 @@ class SubjectController
                 header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
                 exit;
             endif;
-            $materia = html_entity_decode($_REQUEST['name'], ENT_QUOTES | ENT_HTML5, "UTF-8");
-            $usuario = $this->user->get_by_username($_SESSION['username']);
-            $materiaExists = $this->subject->get_by_subject($materia, $usuario->id);
-
-            if ($materiaExists) :
-                header("Location: index.php?controller=subject&action=get_index&msg=subject_exists");
+            $user = $this->user->get_by_username($_SESSION['username']);
+            $subject = $this->subject->get_by_id($_REQUEST['id_materia']);
+            if ($_REQUEST['horaInicio'] >= $_REQUEST['horaFin']) :
+                header("Location: index.php?controller=schedule&action=get_form_schedule&msg=time&subjectId={$subject->id}");
                 exit;
             endif;
+            $horario = new ScheduleModel();
+            // falta agregar post method para guardar
+            $horario->id_usuario = $user->id;
+            $horario->id_materia = $subject->id;
+            $horario->dia = $_REQUEST['day'];
+            $horario->horaInicio = $_REQUEST['horaInicio'];
+            $horario->horaFin = $_REQUEST['horaFin'];
+            $horario->create();
 
-            $subject = new SubjectModel();
-            $subject->id_usuario = $usuario->id;
-            $subject->name = $materia;
-            $subject->create();
-            header("Location: index.php?controller=subject&action=get_index&msg=success");
+
+
+            header("Location: index.php?controller=schedule&action=get_form_schedule&msg=success&subjectId={$subject->id}");
         endif;
     }
 }

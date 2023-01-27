@@ -1,13 +1,15 @@
 <?php
 require_once "model/users.php";
-
+require_once "model/subject.php";
 class UsersController
 {
     private $url_templates = "view/usuarios/";
     private $user;
+    private $subject;
     public function __construct()
     {
         $this->user = new User();
+        $this->subject = new SubjectModel();
     }
 
     public function index()
@@ -46,7 +48,10 @@ class UsersController
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
+
         $usuario = $this->user->get_by_username($_SESSION['username']);
+        $user_subject = $this->subject->get_all_active($usuario->id);
+
 
 
         require_once($this->url_templates . "profile.php");
@@ -275,7 +280,7 @@ class UsersController
         // remove all session variables
         $user = new User();
         $user->id = $usuario->id;
-        $user->status="inactive";
+        $user->status = "inactive";
         $user->set_to_innactive();
         session_unset();
 
@@ -284,6 +289,8 @@ class UsersController
         echo "<h1> El usuario con id: " . $usuario->id . " Ha sido dado de baja";
         //require_once($this->url_templates . "image_form.php");
     }
+
+    
 }
 
 
