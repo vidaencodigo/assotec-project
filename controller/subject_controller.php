@@ -36,7 +36,7 @@ class SubjectController
         require_once($this->url_templates . "nueva_materia.php");
     }
 
-    public function get_user_subects()
+    public function get_user_subjects()
     {
         //  generates the one-time token
         $_SESSION['token'] =  bin2hex(random_bytes(35));
@@ -56,6 +56,8 @@ class SubjectController
 
         require_once($this->url_templates . "profile_subjects.php");
     }
+
+    
     public function post_save_subject()
     {
         if (!isset($_SESSION['session'])) :

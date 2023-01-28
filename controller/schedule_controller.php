@@ -45,7 +45,26 @@ class ScheduleController
         $schedule = $this->schedule->show_by_username($usuario->id, $subject->id);
         require_once($this->url_templates . "new_form.php");
     }
+    public function get_delete_view()
+    {
+        //  generates the one-time token
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        // view
 
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+        if (isset($_SESSION['rol']) != "maestro") :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+        
+
+        require_once($this->url_templates . "delete_.php");
+    }
     public function post_save_schedule()
     {
         if (!isset($_SESSION['session'])) :
@@ -81,6 +100,33 @@ class ScheduleController
 
 
             header("Location: index.php?controller=schedule&action=get_form_schedule&msg=success&subjectId={$subject->id}");
+        endif;
+    }
+
+    public function delete_schedule()
+    {
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") :
+            $token = $_REQUEST['token'];
+            // VALID TOKEN
+            if (!$token || $token !== $_SESSION['token']) :
+                // show an error message 
+                echo '<p class="error">Error: invalid form submission</p>';
+                // return 405 http status code
+                header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
+                exit;
+            endif;
+
+            $horario = new ScheduleModel();
+            // falta agregar post method para guardar
+            $horario->delete($_REQUEST['id_schedule']);
+
+
+            header("Location: index.php?controller=subject&action=get_user_subjects&msg=success_delete");
         endif;
     }
 }

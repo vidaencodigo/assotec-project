@@ -41,7 +41,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subects">Mis materias</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                     </li>
 
                 </ul>
@@ -158,7 +158,7 @@
                                     <td><?= $day->dia; ?></td>
                                     <td><?= $day->horaInicio; ?></td>
                                     <td><?= $day->horaFin ?></td>
-                                    <td><a href="#" class="btn btn-danger">Quitar</a></td>
+                                    <td><a href="index.php?controller=schedule&action=get_delete_view&idSchedule=<?=$day->id;?>" class="btn btn-danger">Quitar</a></td>
                                 </tr>
                             <?php endforeach; ?>
 
