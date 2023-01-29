@@ -76,7 +76,7 @@ class User extends Crud
 
   public function get_by_mail($mail)
   {
-    /** RETORNA EL ELEMENTO QUE HAGA MATCH CON @user */
+    /** RETORNA EL ELEMENTO QUE HAGA MATCH CON @mail */
     try {
       //code...
 
@@ -90,7 +90,7 @@ class User extends Crud
 
   public function get_all_active($estatus)
   {
-    /** RETORNA TODOS LOS ELEMENTOS DE LA TABLAS */
+    /** RETORNA TODOS LOS ELEMENTOS DE LA TABLA usando el parametro @status*/
     try {
       //code...
 
@@ -105,6 +105,7 @@ class User extends Crud
 
   public function update_image()
   {
+    // Modidica la imagen del usuario
     try {
       //code...
       $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET profile_image=? WHERE id=?");
@@ -121,6 +122,7 @@ class User extends Crud
 
   public function update_profile()
   {
+    // modifica los campos no sencibles del usuario
     try {
       //code...
       $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET name=?, last_name=? WHERE id=?");
@@ -138,6 +140,7 @@ class User extends Crud
 
   public function set_to_innactive()
   {
+    // inhabilita el usuario, no lo elimina
     try {
       //code...
       $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET status=? WHERE id=?");
