@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS `comentarios_table` (
     `id` INT,
     `id_asesoria` INT,
     `id_usuario` INT,
-    `user_maestro` varchar(255) NOT NULL,
     `comentario` TEXT,
     `califica` enum("0", "1") NOT NULL,
     `status` enum('pending','active', 'inactive') DEFAULT 'pending',

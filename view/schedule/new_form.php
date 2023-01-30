@@ -141,6 +141,10 @@
 
                     </div>
 
+                    <div class="col-4">
+                        <a href="#" class="btn btn-success"> Generar asesoria</a>
+                    </div>
+
 
                 </div>
                 <?php if ($schedule) : ?>
