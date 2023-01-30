@@ -40,38 +40,39 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
                         <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            list-style: none;
-        }
+                            * {
+                                padding: 0;
+                                margin: 0;
+                                box-sizing: border-box;
+                                text-decoration: none;
+                                list-style: none;
+                            }
 
-        .content {
-            width: 100%;
+                            .content {
+                                width: 100%;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
 
-        .form_content {
-            width: 450px;
-            margin-top: 5em;
-        }
+                            .form_content {
+                                width: 450px;
+                                margin-top: 5em;
+                            }
 
-        .form_content h3 {
-            text-align: center;
-        }
+                            .form_content h3 {
+                                text-align: center;
+                            }
 
-        .buttons-group {
-            margin-top: 5em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>      </li>
+                            .buttons-group {
+                                margin-top: 5em;
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-around;
+                            }
+                        </style>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                     </li>
@@ -80,39 +81,40 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            list-style: none;
-        }
+                        <style>
+                            * {
+                                padding: 0;
+                                margin: 0;
+                                box-sizing: border-box;
+                                text-decoration: none;
+                                list-style: none;
+                            }
 
-        .content {
-            width: 100%;
+                            .content {
+                                width: 100%;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
 
-        .form_content {
-            width: 450px;
-            margin-top: 5em;
-        }
+                            .form_content {
+                                width: 450px;
+                                margin-top: 5em;
+                            }
 
-        .form_content h3 {
-            text-align: center;
-        }
+                            .form_content h3 {
+                                text-align: center;
+                            }
 
-        .buttons-group {
-            margin-top: 5em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>  <li class="nav-item">
+                            .buttons-group {
+                                margin-top: 5em;
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-around;
+                            }
+                        </style>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"><?= $_SESSION['username'] ?></a>
 
                         </li>
@@ -124,39 +126,40 @@
 
 
             </div>
-        </div>  <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            list-style: none;
-        }
+        </div>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                text-decoration: none;
+                list-style: none;
+            }
 
-        .content {
-            width: 100%;
+            .content {
+                width: 100%;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        .form_content {
-            width: 450px;
-            margin-top: 5em;
-        }
+            .form_content {
+                width: 450px;
+                margin-top: 5em;
+            }
 
-        .form_content h3 {
-            text-align: center;
-        }
+            .form_content h3 {
+                text-align: center;
+            }
 
-        .buttons-group {
-            margin-top: 5em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>
+            .buttons-group {
+                margin-top: 5em;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+        </style>
     </nav>
 
     <div class="container">
@@ -200,44 +203,20 @@
 
                                 Mis materias
                             </h3>
-                            <?php if ($this->subject->get_all_active($usuario->id)) : ?>
-                                <table class="table">
-                                    <thead>
-                                        <th>Materia</th>
-                                        <th>Acciones</th>
-                                        <th>
-
-                                        </th>
-                                    </thead>
-                                    <tbody>
-                                    <?php foreach ($user_subject as $materia) : ?>
-                                        <tr >
-                                            <td>
-                                                <?= $materia->name; ?>
-                                            </td>
-                                            <td>
-
-                                                <a href="index.php?controller=schedule&action=get_form_schedule&subjectId=<?= $materia->id; ?>" class="btn btn-link"> Registrar o ver dias</a>
-                                            </td>
-                                            <td>
-
-                                                <a href="index.php?controller=schedule&action=get_form_schedule&subjectId=<?= $materia->id; ?>" class="btn btn-link"> Borrar materia</a>
-                                            </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                                    
-                                
-
-                            <?php endif; ?>
+                           <?php require_once"view/subject/table_subject.php";?>
                         <?php endif; ?>
                     </div>
 
 
                 </div>
                 <hr>
-
+                <?php if (isset($_REQUEST['msg'])) : ?>
+                    <?php if ($_REQUEST['msg'] =="success_delete_subject") : ?>
+                        <div class="alert alert-success">
+                            Se borro una materia correctamente
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
 
 
             </section>

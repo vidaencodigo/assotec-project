@@ -39,7 +39,7 @@ class SubjectModel extends Crud
     public function get_by_subject($subject, $user)
     {
         /** RETORNA EL ELEMENTO QUE HAGA MATCH CON @user */
-        try { 
+        try {
             //code...
 
             $stm = $this->pdo->prepare("SELECT * FROM " .  self::TABLE . " WHERE name=? AND id_usuario=?");
@@ -58,6 +58,22 @@ class SubjectModel extends Crud
             $stm->execute(array($usuario, 'active'));
             return $stm->fetchall(PDO::FETCH_OBJ);
         } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function set_to_innactive()
+    {
+        // inhabilita el usuario, no lo elimina
+        try {
+            //code...
+            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET status=? WHERE id=?");
+            $stm->execute(array(
+
+                $this->status,
+                $this->id
+            ));
+        } catch (PDOException $e) {
+            //throw $e;
             echo $e->getMessage();
         }
     }

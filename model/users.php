@@ -154,4 +154,17 @@ class User extends Crud
       echo $e->getMessage();
     }
   }
+  public function get_all_by_rol($rol, $estatus)
+  {
+    /** RETORNA TODOS LOS ELEMENTOS DE LA TABLA usando el parametro @status*/
+    try {
+      //code...
+
+      $stm = $this->pdo->prepare("SELECT * FROM " .  self::TABLE . " WHERE user_type=? AND status=?" );
+      $stm->execute(array($rol, $estatus));
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
 }

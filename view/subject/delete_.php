@@ -20,9 +20,10 @@
     <div class="container">
         <section class=" d-flex mt-5 justify-content-center">
             <div class="card p-2" style="width: 24rem;">
-                <h3>Confirma para eliminar</h3>
-                <form method="post" action="index.php?controller=schedule&action=delete_schedule">
-                    <input type="hidden" name="id_schedule" id="id_schedule" value="<?= $_REQUEST['idSchedule']; ?>">
+                <h3 class="text-center">Confirma para eliminar</h3>
+                <h4 class="text-center"><?php echo $subject->name;?></h4>
+                <form method="post" action="index.php?controller=subject&action=delete_subject">
+                    <input type="hidden" name="id_materia" id="id_materia" value="<?= $_REQUEST['subjectId']; ?>">
                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                     <div class="d-flex justify-content-between mt-5">
                         <button type="submit" class="btn btn-danger">Confirmar</button>

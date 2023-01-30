@@ -1,23 +1,6 @@
 # ASESOTEC 
 
 
-
-# Modulo maestros
- - Registo de materia
- - Registro de dias y horas de cada materia
-   - Elimina horarios
- - Registro de asesoria
- - Consulta asesorias pasadas
-# Modulo Admin
- - Registro de usuarios tipo maestro
-
-# Modulo Alumno
-- Registro a asesorias
-- Consulta asesorias tomadas
-
-
-
-
 ### Para desarrolladores
 
 - Requiere Bootstrap 5 (./libs)
