@@ -40,7 +40,7 @@
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"><?= $_SESSION['username'] ?></a>
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
                         </li>
                         <li class="nav-item">
@@ -144,6 +144,7 @@
     </div>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
+    <script src="assets/js/tooltips.js"></script>
 </body>
 
 </html>

@@ -290,7 +290,69 @@ class UsersController
         //require_once($this->url_templates . "image_form.php");
     }
 
-    
+    public function get_new_password_form()
+    {
+        /** 
+         * CSRF TOKEN
+         * PREVENT cross-site request ATACKS
+         * Using a simple unique code between request 
+         * more in https://www.w3.org/Security/wiki/Cross_Site_Attacks
+         */
+
+        //  generates the one-time token
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        // view
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+
+
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+        require_once $this->url_templates . "edit_password.php";
+    }
+    public function new_password()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") :
+            // GET ACTUAL TOKEN
+            $token = $_REQUEST['token'];
+
+
+            $password_actual = $_REQUEST['password_actual'];
+            $password = $_REQUEST['password'];
+            $r_password = $_REQUEST['r_password'];
+
+            // VALID TOKEN
+            if (!$token || $token !== $_SESSION['token']) {
+                // show an error message 
+                echo '<p class="error">Error: invalid form submission</p>';
+                // return 405 http status code
+                header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
+                exit;
+            }
+            $usuarioexist = $this->user->get_by_username($_SESSION['username']);
+            if (!password_verify($password_actual, $usuarioexist->password)) :
+                header("Location: index.php?controller=users&action=get_new_password_form&msg=pwdaerr");
+                exit;
+            endif;
+            if (!validPassword($password, $r_password)): //valida que sea el mismo pwd
+                header("Location: index.php?controller=users&action=get_new_password_form&msg=pwderr");
+                exit;
+            endif;
+
+            $usuario = new User();
+            $usuario->id = $usuarioexist->id;
+            $usuario->password = password_hash($password, PASSWORD_DEFAULT);
+            $usuario->set_new_password();
+            session_unset();
+
+            // destroy the session
+            session_destroy();
+            echo "<h1> Usuario  " . $usuarioexist->name . " ha cambiado la contraseña";
+            //header("Location: index.php?controller=users&action=get_new_password_form&msg=success");
+        endif;
+    }
 }
 
 

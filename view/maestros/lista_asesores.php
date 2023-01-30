@@ -18,8 +18,7 @@
             color: #737373;
             font-size: 30px;
         }
-
-        .bg-purple {
+        .bg-purple{
             background-color: #7952b3;
         }
     </style>
@@ -59,7 +58,7 @@
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == "alumno") : ?>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php?controller=maestros&action=get_asesores">Lista de asesores</a>
+                                <a class="nav-link active" aria-current="page" href="#">Lista de asesores</a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -95,10 +94,7 @@
     </nav>
 
     <div class="container">
-        <section class="action text-center py-5">
-            <h1>ASESOTEC</h1>
-            <p>Aprende con asesores tu materia favorita</p>
-        </section>
+        
 
         <?php if (!isset($_SESSION['session'])) : ?>
             <?php require_once "view/inicio/wellcome.php"; ?>
@@ -106,8 +102,8 @@
             <?php if ($_SESSION['rol'] == "alumno") : ?>
 
                 <div class="row d-flex justify-content-center">
-                    <h3 class="text-center my-5">Maestros</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
+                    <h3 class="text-center my-3">Asesores registrados</h3>
+                    <div class="col-lg-10 col-md-6 col-sm-12">
                         <?php require_once "view/inicio/lista_maestros.php"; ?>
                     </div>
                 </div>
@@ -117,7 +113,7 @@
         <?php endif; ?>
     </div>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script src="assets/js/tooltips.js"></script>
+    <script src="assets/js/tooltips.js"></script>
 </body>
 
 </html>

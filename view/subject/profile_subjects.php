@@ -115,7 +115,7 @@
                             }
                         </style>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile"><?= $_SESSION['username'] ?></a>
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
                         </li>
                         <li class="nav-item">
@@ -193,7 +193,7 @@
             </section>
             <section class="profile_details col-8 ">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
 
                         <?php if ($_SESSION['rol'] == 'alumno') : ?>
                             Hola alumno
@@ -226,6 +226,7 @@
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
+    <script src="assets/js/tooltips.js"></script>
 </body>
 
 </html>

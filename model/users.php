@@ -154,6 +154,23 @@ class User extends Crud
       echo $e->getMessage();
     }
   }
+
+  public function set_new_password()
+  {
+    // inhabilita el usuario, no lo elimina
+    try {
+      //code...
+      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET password=? WHERE id=?");
+      $stm->execute(array(
+       
+        $this->password,
+        $this->id
+      ));
+    } catch (PDOException $e) {
+      //throw $e;
+      echo $e->getMessage();
+    }
+  }
   public function get_all_by_rol($rol, $estatus)
   {
     /** RETORNA TODOS LOS ELEMENTOS DE LA TABLA usando el parametro @status*/

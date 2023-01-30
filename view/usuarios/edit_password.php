@@ -59,7 +59,7 @@
 
             <section class="profile col-4 text-center">
                 <?php if ($usuario->profile_image) : ?>
-                    <img src="data:image/png;base64,<?=base64_encode($usuario->profile_image)?>"  class="img-thumbnail" alt="Imagen de perfil">
+                    <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
                 <?php else : ?>
                     <div style="margin:auto; display:flex; align-items:center;justify-content:center; width:200px; height:200px; border-radius:50%; background-color:#737373; color:#fff;">
                         no image
@@ -74,21 +74,61 @@
                 </p>
             </section>
             <section class="profile_details col-8 ">
-                <h3>Cambia la imagen de perfil</h3>
+                <h3>Cambiar contraseña</h3>
                 <p>
                     <?= $usuario->name . " " . $usuario->last_name ?>
                 </p>
 
 
                 <hr>
-                <form action="index.php?controller=users&action=save_image" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
-                    <div class="input-group mb-3">
-                        <input type="file" class="form-control" name="image_profile" id="image_profile" accept="image/png, image/jpeg">
-                        <label class="input-group-text" for="image_profile">Imagen</label>
+                <form action="index.php?controller=users&action=new_password" method="post" class="needs-validation" novalidate>
+                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                    <div class="mb-3">
+                        <label for="password_actual" class="form-label"><strong>Contraseña actual</strong> </label>
+                        <input type="password" class="form-control" name="password_actual" id="password_actual" autofocus required>
+                        <div class="invalid-feedback">
+                            Contraseña requerida
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="password" id="password" required>
+                        <div class="invalid-feedback">
+                            Contraseña requerida
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Repite Contraseña</label>
+                        <input type="password" class="form-control" name="r_password" id="r_password" required>
+                        <div class="invalid-feedback">
+                            Repite Contraseña requerida
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
+                <?php if (isset($_REQUEST['msg'])) : ?>
+                    <div class="my-3">
+                        <?php if ($_REQUEST['msg'] == "pwdaerr") : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Contraseña actual no coincide
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($_REQUEST['msg'] == "pwderr") : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Contraseñas no coinciden
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($_REQUEST['msg'] == "success") : ?>
+                            <div class="alert alert-success" role="alert">
+                                Contraseña modificada
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                <?php endif; ?>
             </section>
         </div>
     </div>
