@@ -9,7 +9,7 @@ class MaestroModel extends Crud
     public $id_materia;
     public $rol;
 
-    const TABLE = 'users';
+    const TABLE = 'users_table';
     const TABLE_2 = 'materias_agenda_table';
     private $pdo;
     public function __construct()
@@ -30,7 +30,7 @@ class MaestroModel extends Crud
             WHERE  users_table.id=? AND  users_table.user_type=?");
             $stm->execute(array(
                 $this->id_usuario,
-                $this->id_materia,
+                $this->rol,
             ));
             return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (\PDOException $e) {

@@ -4,12 +4,20 @@
             <thead>
                 <th>-</th>
                 <th>Nombre Completo</th>
+                <th>
+                    Materias
+                </th>
                 <th>Acciones</th>
             </thead>
             <tbody>
 
 
-                <?php foreach ($maestros as $maestro) : ?>
+                <?php
+                // para listar las materias de maestros
+                // se invoca el modelo
+
+                $materias = new MaestroModel();
+                foreach ($maestros as $maestro) : ?>
                     <tr>
                         <td>
                             <?php if ($maestro->profile_image) : ?>
@@ -19,11 +27,26 @@
                             <?php endif; ?>
 
                         </td>
+
                         <td>
-                            <?=$maestro->name; ?> <?=$maestro->last_name; ?>
+                            <?= $maestro->name; ?> <?= $maestro->last_name; ?>
                         </td>
                         <td>
-                            
+                            <?php
+                            // por cada maestro al modelo se manda los datos de maestros
+
+                            $materias->id_usuario = $maestro->id;
+                            $materias->rol = "maestro";
+
+                            foreach ($materias->get_all_subjects() as $materia) :
+                            ?>
+                                <span class="badge rounded-pill bg-purple ">
+                                    <?= $materia->name; ?>
+                                </span>
+                            <?php endforeach; ?>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-link">Ver asesorias</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

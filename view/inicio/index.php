@@ -18,6 +18,9 @@
             color: #737373;
             font-size: 30px;
         }
+        .bg-purple{
+            background-color: #7952b3;
+        }
     </style>
 </head>
 
@@ -100,8 +103,15 @@
             <?php require_once "view/inicio/wellcome.php"; ?>
         <?php else : ?>
             <?php if ($_SESSION['rol'] == "alumno") : ?>
-                <h3 class="text-center my-5">Maestros</h3>
-                <?php require_once"view/inicio/lista_maestros.php";?>
+
+                <div class="row d-flex justify-content-center">
+                    <h3 class="text-center my-5">Maestros</h3>
+                    <div class="col-lg-8 col-md-6 col-sm-12">
+                        <?php require_once "view/inicio/lista_maestros.php"; ?>
+                    </div>
+                </div>
+
+
             <?php endif; ?>
         <?php endif; ?>
     </div>
