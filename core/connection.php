@@ -18,7 +18,8 @@ class Connection
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $pdo;
     } catch (\PDOException $e) {
-       echo $e->getMessage();
+       //echo $e->getMessage();
+       echo "No se pudo realizar la conexión, revisa o crea el fichero const_MYSQL.php";
        exit;
     }
   }
