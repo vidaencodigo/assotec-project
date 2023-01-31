@@ -228,4 +228,6 @@ class AsesoriasController
         require_once $this->url_templates."inscripcion.php";
         
     }
+
+   
 }

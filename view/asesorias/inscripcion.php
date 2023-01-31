@@ -21,7 +21,7 @@
         <section class=" d-flex mt-5 justify-content-center">
             <div class="card p-2" style="width: 24rem;">
                 <h3>Confirma para Incribir</h3>
-                <form method="post" action="index.php?controller=asesorias&action=">
+                <form method="post" action="index.php?controller=inscribe&action=inscribe">
                     <input type="hidden" name="id" id="id" value="<?= $asesoria->id; ?>">
                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                     <div class="d-flex justify-content-between mt-5">
