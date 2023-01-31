@@ -36,7 +36,7 @@
                     </li>
                     <?php if ($_SESSION['rol'] == "maestro") : ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Agenda</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=asesorias&action=get_all_asesorias">Agenda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
@@ -127,11 +127,7 @@
 
                         </form>
                     </div>
-                    <div class="col-6">
-                        <?php if ($_SESSION['rol'] == "maestro") : ?>
-                            <a href="#" class="btn btn-secondary" style="width: 100%;">Ver mis asesorias</a>
-                        <?php endif; ?>
-                    </div>
+                    
                 </div>
 
 

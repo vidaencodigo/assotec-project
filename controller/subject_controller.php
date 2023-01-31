@@ -118,7 +118,7 @@ class SubjectController
 
         $usuario = $this->user->get_by_username($_SESSION['username']);
         $subject = $this->subject->get_by_id($_REQUEST['subjectId']);
-        
+
         require_once($this->url_templates . "delete_.php");
     }
     public function delete_subject()
@@ -141,7 +141,7 @@ class SubjectController
 
             $materia = new SubjectModel();
             // falta agregar post method para guardar
-            $materia->id =$_REQUEST['id_materia'];
+            $materia->id = $_REQUEST['id_materia'];
             $materia->status = "inactive";
             $materia->set_to_innactive();
 

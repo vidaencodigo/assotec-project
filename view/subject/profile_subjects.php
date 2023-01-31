@@ -35,43 +35,11 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Agenda</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=asesorias&action=get_all_asesorias">Agenda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
-                        <style>
-                            * {
-                                padding: 0;
-                                margin: 0;
-                                box-sizing: border-box;
-                                text-decoration: none;
-                                list-style: none;
-                            }
-
-                            .content {
-                                width: 100%;
-
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                            }
-
-                            .form_content {
-                                width: 450px;
-                                margin-top: 5em;
-                            }
-
-                            .form_content h3 {
-                                text-align: center;
-                            }
-
-                            .buttons-group {
-                                margin-top: 5em;
-                                width: 100%;
-                                display: flex;
-                                justify-content: space-around;
-                            }
-                        </style>
+                       
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
@@ -81,39 +49,7 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <style>
-                            * {
-                                padding: 0;
-                                margin: 0;
-                                box-sizing: border-box;
-                                text-decoration: none;
-                                list-style: none;
-                            }
-
-                            .content {
-                                width: 100%;
-
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                            }
-
-                            .form_content {
-                                width: 450px;
-                                margin-top: 5em;
-                            }
-
-                            .form_content h3 {
-                                text-align: center;
-                            }
-
-                            .buttons-group {
-                                margin-top: 5em;
-                                width: 100%;
-                                display: flex;
-                                justify-content: space-around;
-                            }
-                        </style>
+                        
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
@@ -127,39 +63,7 @@
 
             </div>
         </div>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-                text-decoration: none;
-                list-style: none;
-            }
-
-            .content {
-                width: 100%;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .form_content {
-                width: 450px;
-                margin-top: 5em;
-            }
-
-            .form_content h3 {
-                text-align: center;
-            }
-
-            .buttons-group {
-                margin-top: 5em;
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-            }
-        </style>
+       
     </nav>
 
     <div class="container">

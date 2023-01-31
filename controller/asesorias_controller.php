@@ -72,4 +72,40 @@ class AsesoriasController
 
         endif;
     }
+    public function get_all_asesorias()
+    {
+        if (!isset($_SESSION['session'])) :
+
+            header("Location: index.php?controller=index&action=index");
+            exit;
+
+        endif;
+        if ($_SESSION['rol'] != 'maestro') :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+        $asesorias = $this->asesoria->list_asesoria_materias($usuario->id);
+        
+        require_once $this->url_templates."asesorias.php";
+    }
+
+    public function get_all_asesorias_alumo()
+    {
+        if (!isset($_SESSION['session'])) :
+
+            header("Location: index.php?controller=index&action=index");
+            exit;
+
+        endif;
+        if ($_SESSION['rol'] != 'alumno') :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+        
+        $usuario = $this->user->get_by_id($_REQUEST['id_usuario']);
+        $asesorias = $this->asesoria->list_asesoria_materias($usuario->id);
+       
+        require_once $this->url_templates."asesorias_a.php";
+    }
 }

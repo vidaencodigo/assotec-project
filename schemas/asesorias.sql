@@ -35,3 +35,8 @@ ALTER TABLE asesorias_table
 ADD inicio time;
 ALTER TABLE asesorias_table
 ADD fin time;
+
+
+ALTER TABLE asesorias_table
+    CHANGE dia  
+        dia TIME;

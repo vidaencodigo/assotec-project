@@ -46,7 +46,7 @@
                             <?php endforeach; ?>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-link">Ver asesorias</a>
+                            <a href="index.php?controller=asesorias&action=get_all_asesorias_alumo&id_usuario=<?=$maestro->id?>" class="btn btn-link">Ver asesorias</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

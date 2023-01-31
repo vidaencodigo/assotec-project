@@ -39,6 +39,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
+                       
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
@@ -48,6 +49,7 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
@@ -61,54 +63,41 @@
 
             </div>
         </div>
+       
     </nav>
 
     <div class="container">
-        <section class="action py-5">
-            <h4 class="text-center">Registra materia</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="row mx-auto mt-5">
 
-                <form method="post" action="index.php?controller=subject&action=post_save_subject" class="needs-validation" novalidate>
-
-                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
-
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="name" id="name" required>
-                        <div class="invalid-feedback">
-                            Nombre requerido
-                        </div>
+            <section class="profile col-4 text-center">
+                <?php if ($usuario->profile_image) : ?>
+                    <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
+                <?php else : ?>
+                    <div style="margin:auto; display:flex; align-items:center;justify-content:center; width:200px; height:200px; border-radius:50%; background-color:#737373; color:#fff;">
+                        no image
                     </div>
+                    <br>
+
+                <?php endif; ?>
+                
+
+                <p>
+                    <?= $usuario->user ?>
+                </p>
+                <p>
+                    <?= $usuario->mail ?>
+                </p>
 
 
-
-
-                    <div class="center__items">
-                        <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
-                    </div>
-
-                    <div class="errors py-2">
-                        <?php if (isset($_REQUEST['msg'])) : ?>
-                            <?php if ($_REQUEST['msg'] == "success") : ?>
-                                <div class="alert alert-success" role="alert">
-                                    Materia guardada
-                                </div>
-                            <?php endif; ?>
-                            <?php if ($_REQUEST['msg'] == "subject_exists") : ?>
-                                <div class="alert alert-danger" role="alert">
-                                    Materia ya esta registrada
-                                </div>
-                            <?php endif; ?>
-
-                        <?php endif; ?>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-
-
+            </section>
+            <section class="profile_details col-8 ">
+                <h3 class="my-5 text-center">Asesorias activas</h3>
+                <?php require_once "view/asesorias/asesorias_table.php";?>
+            </section>
+        </div>
     </div>
+    <?php require_once "./view/usuarios/modal_delete.php" ?>
+
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
     <script src="assets/js/tooltips.js"></script>

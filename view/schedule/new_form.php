@@ -35,7 +35,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Agenda</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=asesorias&action=get_all_asesorias">Agenda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
@@ -142,7 +142,7 @@
                     </div>
 
                     <div class="col-4">
-                        <a href="#" class="btn btn-success"> Generar asesoria</a>
+                        <a href="index.php?controller=asesorias&action=get_new_form&subjectId=<?=$_REQUEST['subjectId'];?>" class="btn btn-success"> Generar asesoria</a>
                     </div>
 
 
