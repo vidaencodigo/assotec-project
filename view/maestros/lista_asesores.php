@@ -18,7 +18,8 @@
             color: #737373;
             font-size: 30px;
         }
-        .bg-purple{
+
+        .bg-purple {
             background-color: #7952b3;
         }
     </style>
@@ -94,7 +95,7 @@
     </nav>
 
     <div class="container">
-        
+
 
         <?php if (!isset($_SESSION['session'])) : ?>
             <?php require_once "view/inicio/wellcome.php"; ?>
@@ -103,6 +104,16 @@
 
                 <div class="row d-flex justify-content-center">
                     <h3 class="text-center my-3">Asesores registrados</h3>
+                    <div class="col-lg-10 col-md-6 col-sm-12">
+                        <form action="">
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="materia_b" placeholder="Busca materia" aria-label="materias" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-success" type="submit" id="button-addon2">Buscar</button>
+                            </div>
+                        </form>
+
+                    </div>
                     <div class="col-lg-10 col-md-6 col-sm-12">
                         <?php require_once "view/inicio/lista_maestros.php"; ?>
                     </div>

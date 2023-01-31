@@ -102,7 +102,7 @@
                         <h3>Edita datos de asesoria <br> <?= $materia->name; ?></h3>
                         <hr>
                         <form action="index.php?controller=asesorias&action=post_edit" method="post" class="needs-validation" novalidate>
-                            <input type="hidden" name="idmateria" value="<?= $asesoria->id;?>">
+                            <input type="hidden" name="id_asesoria" value="<?= $asesoria->id;?>">
                             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                             <div class="mb-3">
                                 <select class="form-select" name="tipo" aria-label="Tipo Asesoria">
@@ -145,7 +145,7 @@
                     </div>
 
 
-                </div>
+                </div> 
 
 
 

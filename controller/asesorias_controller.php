@@ -141,7 +141,7 @@ class AsesoriasController
             $asesoria->inicio = $_REQUEST['horaInicio'];
             $asesoria->fin = $_REQUEST['horaFin'];
             $asesoria->edit();
-            header("Location: index.php?controller=subject&action=get_user_subjects");
+            header("Location: index.php?controller=asesorias&action=get_all_asesorias");
 
         endif;
     }
