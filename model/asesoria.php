@@ -54,10 +54,44 @@ class AsesoriaModel extends Crud
             echo $e->getMessage();
         }
     }
-
+    public function edit()
+    {
+        try {
+            //code...
+            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET tipo=?, salon=?, descripcion=?, url_sesion=?, dia=?, inicio=?, fin=? WHERE id=?");
+            $stm->execute(array(
+                $this->tipo,
+                $this->salon,
+                $this->descripcion,
+                $this->url_sesion,
+                $this->dia,
+                $this->inicio,
+                $this->fin,
+                $this->id
+            ));
+        } catch (PDOException $e) {
+            //throw $e;
+            echo $e->getMessage();
+        }
+    }
+    public function quit_asesoria()
+    {
+        try {
+            //code...
+            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET status=? WHERE id=?");
+            $stm->execute(array(
+               
+                $this->status,
+                $this->id
+            ));
+        } catch (PDOException $e) {
+            //throw $e;
+            echo $e->getMessage();
+        }
+    }
     public function list_asesoria_materias($usuario)
     {
-        $query = "SELECT materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status FROM "
+        $query = "SELECT asesorias_table.id, asesorias_table.id_horario_materia as materia_id, materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status FROM "
             . self::TABLE .
             " INNER JOIN materias_agenda_table 
         ON asesorias_table.id_horario_materia = materias_agenda_table.id 
@@ -72,5 +106,22 @@ class AsesoriaModel extends Crud
             echo $e->getMessage();
         }
     }
-    
+
+    public function list_asesoria($id)
+    {
+        $query = "SELECT asesorias_table.id,  asesorias_table.id_horario_materia as materia_id,  materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status FROM "
+            . self::TABLE .
+            " INNER JOIN materias_agenda_table 
+        ON asesorias_table.id_horario_materia = materias_agenda_table.id 
+        WHERE asesorias_table.status=? AND asesorias_table.id=?";
+        try {
+            //code...
+
+            $stm = $this->pdo->prepare($query);
+            $stm->execute(array("active", $id));
+            return $stm->fetch(PDO::FETCH_OBJ);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

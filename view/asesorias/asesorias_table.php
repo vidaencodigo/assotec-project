@@ -27,8 +27,13 @@
                     <td><?= $asesoria->inicio ?></td>
                     <td><?= $asesoria->fin ?></td>
                     <td>
-
-                        <a href="#" class="btn btn-outline-info">Ver detalles</a>
+                        <?php if ($_SESSION['rol'] == 'maestro') : ?>
+                            <a href="index.php?controller=asesorias&action=get_asesoria_details&id_asesoria=<?=$asesoria->id?>" class="btn btn-outline-info">Ver detalles</a>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['rol'] == 'alumno') : ?>
+                            <a href="#" class="btn btn-outline-info">Inscribir</a>
+                        <?php endif; ?>
+                        
 
 
                     </td>
