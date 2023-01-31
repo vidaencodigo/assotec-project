@@ -4,7 +4,7 @@ require_once "model/subject.php";
 require_once "model/schedule.php";
 require_once "model/maestros.php";
 require_once "model/asesoria.php";
-
+require_once "model/asesoria_alumno.php";
 class AsesoriasController
 {
     private $url_templates = "view/asesorias/";
@@ -12,12 +12,14 @@ class AsesoriasController
     private $user;
     private $subject;
     private $techers;
+    private $asesoriaAlumno;
     public function __construct()
     {
         $this->user = new User();
         $this->subject = new SubjectModel();
         $this->techers = new MaestroModel();
         $this->asesoria = new AsesoriaModel();
+        $this->asesoriaAlumno =  new AsesoriaAlumnoModel();
     }
     public function get_new_form()
     {
@@ -158,13 +160,13 @@ class AsesoriasController
                 header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
                 exit;
             endif;
-            
+
 
             $asesoria = new AsesoriaModel();
             $asesoria->id = $_REQUEST['id'];
 
             $asesoria->status = "inactive";
-            
+
             $asesoria->quit_asesoria();
             header("Location: index.php?controller=subject&action=get_user_subjects");
 
@@ -205,5 +207,25 @@ class AsesoriasController
         $asesorias = $this->asesoria->list_asesoria_materias($usuario->id);
 
         require_once $this->url_templates . "asesorias_a.php";
+    }
+
+    public function get_asesoria_ins()
+    {
+        if (!isset($_SESSION['session'])) :
+
+            header("Location: index.php?controller=index&action=index");
+            exit;
+
+        endif;
+        if ($_SESSION['rol'] != 'alumno') :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+       
+        $asesoria = $this->asesoria->list_asesoria($_REQUEST['id_asesoria']);
+
+        require_once $this->url_templates."inscripcion.php";
+        
     }
 }

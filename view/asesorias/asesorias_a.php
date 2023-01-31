@@ -34,6 +34,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
+                    <?php if ($_SESSION['rol'] == "alumno") : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=maestros&action=get_asesores">Lista de asesores</a>
+                            </li>
+                        <?php endif; ?>
                     <?php if ($_SESSION['rol'] == 'maestro') : ?>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=asesorias&action=get_all_asesorias">Agenda</a>

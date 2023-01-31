@@ -31,7 +31,7 @@
                             <a href="index.php?controller=asesorias&action=get_asesoria_details&id_asesoria=<?=$asesoria->id?>" class="btn btn-outline-info">Ver detalles</a>
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == 'alumno') : ?>
-                            <a href="#" class="btn btn-outline-info">Inscribir</a>
+                            <a href="index.php?controller=asesorias&action=get_asesoria_ins&id_asesoria=<?=$asesoria->id?>" class="btn btn-outline-info">Inscribir</a>
                         <?php endif; ?>
                         
 
