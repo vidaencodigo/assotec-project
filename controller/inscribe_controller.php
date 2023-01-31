@@ -44,7 +44,7 @@ class InscribeController
             $asesoria = $this->asesoria->get_by_id($_REQUEST['id']);
 
             if ($asesoria) :
-                $asesoriaAlumnExists = $this->asesoriaAlumno->get_by_asesoria($asesoria->id);
+                $asesoriaAlumnExists = $this->asesoriaAlumno->get_by_asesoria($asesoria->id, $usuario->id);
                 if ($asesoriaAlumnExists) :
                     echo "Error: ya se encuentra registrado";
                     exit;

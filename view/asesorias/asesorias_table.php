@@ -7,6 +7,12 @@
             <th>Dia</th>
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
+            <?php if ($_SESSION['rol'] == 'maestro') : ?>
+                <th>
+                    Inscritos
+                </th>
+            <?php endif; ?>
+
             <th>-</th>
             <th></th>
         </thead>
@@ -26,14 +32,26 @@
                     </td>
                     <td><?= $asesoria->inicio ?></td>
                     <td><?= $asesoria->fin ?></td>
+                    <?php if ($_SESSION['rol'] == 'maestro') : ?>
+                        <td>
+                            <h3>
+
+                                <span class="badge bg-primary">
+                                    <?php $asesoriaAlumno = new AsesoriaAlumnoModel;
+                                    echo ($asesoriaAlumno->get_total($asesoria->id)->Total);
+                                    ?>
+                                </span>
+                            </h3>
+                        </td>
+                    <?php endif; ?>
                     <td>
                         <?php if ($_SESSION['rol'] == 'maestro') : ?>
-                            <a href="index.php?controller=asesorias&action=get_asesoria_details&id_asesoria=<?=$asesoria->id?>" class="btn btn-outline-info">Ver detalles</a>
+                            <a href="index.php?controller=asesorias&action=get_asesoria_details&id_asesoria=<?= $asesoria->id ?>" class="btn btn-outline-info">Ver detalles</a>
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == 'alumno') : ?>
-                            <a href="index.php?controller=asesorias&action=get_asesoria_ins&id_asesoria=<?=$asesoria->id?>" class="btn btn-outline-info">Inscribir</a>
+                            <a href="index.php?controller=asesorias&action=get_asesoria_ins&id_asesoria=<?= $asesoria->id ?>" class="btn btn-outline-info">Inscribir</a>
                         <?php endif; ?>
-                        
+
 
 
                     </td>

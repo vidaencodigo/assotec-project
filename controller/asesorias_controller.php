@@ -187,6 +187,8 @@ class AsesoriasController
         $usuario = $this->user->get_by_username($_SESSION['username']);
         $asesorias = $this->asesoria->list_asesoria_materias($usuario->id);
 
+       
+        
         require_once $this->url_templates . "asesorias.php";
     }
 

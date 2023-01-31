@@ -61,6 +61,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.php?controller=maestros&action=get_asesores">Lista de asesores</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Mis asesorias</a>
+                            </li>
                         <?php endif; ?>
                     <?php endif; ?>
 
