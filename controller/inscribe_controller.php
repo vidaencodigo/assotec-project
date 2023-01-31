@@ -42,11 +42,18 @@ class InscribeController
             endif;
             $usuario = $this->user->get_by_username($_SESSION['username']);
             $asesoria = $this->asesoria->get_by_id($_REQUEST['id']);
+
             if ($asesoria) :
+                $asesoriaAlumnExists = $this->asesoriaAlumno->get_by_asesoria($asesoria->id);
+                if ($asesoriaAlumnExists) :
+                    echo "Error: ya se encuentra registrado";
+                    exit;
+                endif;
                 $inscribe = new AsesoriaAlumnoModel();
                 $inscribe->id_usuario = $usuario->id;
                 $inscribe->id_asesoria =  $asesoria->id;
                 $inscribe->create();
+                
                 header("Location: index.php");
             endif;
 
