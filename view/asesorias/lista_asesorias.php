@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_asesorias">Mis asesorias</a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_past_asesorias">Pasadas asesorias</a>
+                            </li>
                     <?php endif; ?>
 
 
@@ -102,6 +105,7 @@
                         <th>Dia</th>
                         <th>Hora inicio</th>
                         <th>Hora Fin</th>
+                        
                         <th>-</th>
                     </thead>
                     <tbody>
@@ -113,9 +117,10 @@
                                     <td><?= $asesoria->dia ?></td>
                                     <td><?= $asesoria->inicio ?></td>
                                     <td><?= $asesoria->fin ?></td>
+                                    <?php if($asesoria->status !== "inactive"):?>
                                     <td>
                                         <a href="index.php?controller=inscribe&action=quit&id=<?=$asesoria->id?>" class="btn btn-danger">Desinscribe</a>
-                                    </td>
+                                    </td><?php endif;?>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

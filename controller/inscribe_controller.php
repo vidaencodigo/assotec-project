@@ -49,8 +49,27 @@ class InscribeController
         $usuario = $alumno;
         $request = new AsesoriaAlumnoModel();
         $request->id_usuario = $alumno->id;
+        $request->status = "active";
         $asesorias = $request->get_asesorias_alumno();
 
+
+        require_once $this->url_templates . "lista_asesorias.php";
+    }
+    public function get_past_asesorias()
+    {
+        if (!isset($_SESSION['session'])) :
+            exit;
+        endif;
+        if ($_SESSION['rol'] !== "alumno") :
+            exit;
+        endif;
+        // get user type alumno
+        $alumno = $this->user->get_by_username($_SESSION['username']);
+        $usuario = $alumno;
+        $request = new AsesoriaAlumnoModel();
+        $request->id_usuario = $alumno->id;
+        $request->status = "inactive";
+        $asesorias = $request->get_asesorias_alumno();
 
         require_once $this->url_templates . "lista_asesorias.php";
     }
