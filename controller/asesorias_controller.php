@@ -168,7 +168,7 @@ class AsesoriasController
             $asesoria->status = "inactive";
 
             $asesoria->quit_asesoria();
-            header("Location: index.php?controller=subject&action=get_user_subjects");
+            header("Location: index.php?controller=asesorias&action=get_all_asesorias");
 
         endif;
     }

@@ -20,8 +20,23 @@ class InscribeController
         $this->techers = new MaestroModel();
         $this->asesoria = new AsesoriaModel();
         $this->asesoriaAlumno =  new AsesoriaAlumnoModel();
+        
     }
-
+    public function get_alumnos()
+    {
+        if (!isset($_SESSION['session'])) :
+            exit;
+        endif;
+        if ($_SESSION['rol']!=="maestro") :
+            exit;
+        endif;
+        $usuario=$this->user->get_by_username($_SESSION['username']);
+        $lista_alumnos = new AsesoriaAlumnoModel();
+        $lista_alumnos->id_asesoria = $_REQUEST['id_asesoria'];
+        $alumnos = $lista_alumnos->get_alumnos_by_asesoria();
+        $materia = $this->subject->get_by_id($_REQUEST['materia']);
+        require_once $this->url_templates."lista_alumnos.php";
+    }
     public function inscribe()
     {
         /**
@@ -53,7 +68,7 @@ class InscribeController
                 $inscribe->id_usuario = $usuario->id;
                 $inscribe->id_asesoria =  $asesoria->id;
                 $inscribe->create();
-                
+
                 header("Location: index.php");
             endif;
 

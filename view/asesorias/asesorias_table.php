@@ -19,7 +19,10 @@
         <tbody>
             <?php foreach ($asesorias as $asesoria) : ?>
                 <tr>
-                    <td><?= $asesoria->materia ?></td>
+                    <td>
+                        <?= $asesoria->materia ?>
+                        
+                    </td>
 
                     <td><?= $asesoria->tipo ?></td>
                     <td><?= $asesoria->salon ?></td>
@@ -35,12 +38,14 @@
                     <?php if ($_SESSION['rol'] == 'maestro') : ?>
                         <td>
                             <h3>
+                                <a href="index.php?controller=inscribe&action=get_alumnos&id_asesoria=<?=$asesoria->id;?>&materia=<?= $asesoria->materia_id ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="<h5>Mostrar alumnos</h5>">
 
-                                <span class="badge bg-primary">
-                                    <?php $asesoriaAlumno = new AsesoriaAlumnoModel;
-                                    echo ($asesoriaAlumno->get_total($asesoria->id)->Total);
-                                    ?>
-                                </span>
+                                    <span class="badge bg-primary">
+                                        <?php $asesoriaAlumno = new AsesoriaAlumnoModel;
+                                        echo ($asesoriaAlumno->get_total($asesoria->id)->Total);
+                                        ?>
+                                    </span>
+                                </a>
                             </h3>
                         </td>
                     <?php endif; ?>

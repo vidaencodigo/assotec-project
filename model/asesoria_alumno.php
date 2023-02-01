@@ -66,6 +66,27 @@ class AsesoriaAlumnoModel extends Crud
             echo $e->getMessage();
         }
     }
+    public function get_alumnos_by_asesoria()
+    {
+        $query = "
+        SELECT users_table.name as Name, users_table.last_name as Last_name FROM 
+        " . self::TABLE . 
+        " INNER JOIN users_table 
+        ON alumno_asesoria.id_usuario = users_table.id 
+        WHERE alumno_asesoria.id_asesoria=?;";
+        try {
+            //code...
+            $stm = $this->pdo->prepare($query);
+            $stm->execute(array(
+                $this->id_asesoria
+            ));
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            //throw $e;
+            echo $e->getMessage();
+        }
+    }
     public function update()
     {
     }
