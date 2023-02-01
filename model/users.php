@@ -177,7 +177,7 @@ class User extends Crud
     try {
       //code...
 
-      $stm = $this->pdo->prepare("SELECT * FROM " .  self::TABLE . " WHERE user_type=? AND status=?" );
+      $stm = $this->pdo->prepare("SELECT * FROM " .  self::TABLE . " WHERE user_type=? AND status=? LIMIT 5" );
       $stm->execute(array($rol, $estatus));
       return $stm->fetchAll(PDO::FETCH_OBJ);
     } catch (\PDOException $e) {

@@ -42,18 +42,6 @@
                             <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_asesorias">Mis asesorias</a>
                         </li>
                     <?php endif; ?>
-                    <?php if ($_SESSION['rol'] == 'maestro') : ?>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=asesorias&action=get_all_asesorias">Agenda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
-
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
-                        </li>
-                    <?php endif; ?>
 
 
                 </ul>
@@ -89,7 +77,12 @@
                     <br>
 
                 <?php endif; ?>
+                <p style="font-size: 14px;">
+                    <a href="index.php?controller=users&action=change_image_profile">
 
+                        Cambiar imagen
+                    </a>
+                </p>
 
                 <p>
                     <?= $usuario->user ?>
@@ -101,12 +94,36 @@
 
             </section>
             <section class="profile_details col-8 ">
-                <h3 class="my-5 text-center">Asesorias activas</h3>
-                <?php require_once "view/asesorias/asesorias_table.php"; ?>
+                <h3 class="my-5 text-center">Mis asesorias</h3>
+                <table class="table">
+                    <thead>
+                        <th>Maestro</th>
+                        <th>Materia</th>
+                        <th>Dia</th>
+                        <th>Hora inicio</th>
+                        <th>Hora Fin</th>
+                        <th>-</th>
+                    </thead>
+                    <tbody>
+                        <?php if ($asesorias) : ?>
+                            <?php foreach ($asesorias as $asesoria) : ?>
+                                <tr>
+                                    <td><?= $this->user->get_by_id($asesoria->maestro)->name ?><br><?= $this->user->get_by_id($asesoria->maestro)->last_name ?></td>
+                                    <td><?= $this->subject->get_by_id($asesoria->materia)->name ?></td>
+                                    <td><?= $asesoria->dia ?></td>
+                                    <td><?= $asesoria->inicio ?></td>
+                                    <td><?= $asesoria->fin ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger">Desinscribe</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </section>
         </div>
     </div>
-    <?php require_once "./view/usuarios/modal_delete.php" ?>
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>

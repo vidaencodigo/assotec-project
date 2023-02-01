@@ -20,22 +20,39 @@ class InscribeController
         $this->techers = new MaestroModel();
         $this->asesoria = new AsesoriaModel();
         $this->asesoriaAlumno =  new AsesoriaAlumnoModel();
-        
     }
     public function get_alumnos()
     {
         if (!isset($_SESSION['session'])) :
             exit;
         endif;
-        if ($_SESSION['rol']!=="maestro") :
+        if ($_SESSION['rol'] !== "maestro") :
             exit;
         endif;
-        $usuario=$this->user->get_by_username($_SESSION['username']);
+        $usuario = $this->user->get_by_username($_SESSION['username']);
         $lista_alumnos = new AsesoriaAlumnoModel();
         $lista_alumnos->id_asesoria = $_REQUEST['id_asesoria'];
         $alumnos = $lista_alumnos->get_alumnos_by_asesoria();
         $materia = $this->subject->get_by_id($_REQUEST['materia']);
-        require_once $this->url_templates."lista_alumnos.php";
+        require_once $this->url_templates . "lista_alumnos.php";
+    }
+    public function get_asesorias()
+    {
+        if (!isset($_SESSION['session'])) :
+            exit;
+        endif;
+        if ($_SESSION['rol'] !== "alumno") :
+            exit;
+        endif;
+        // get user type alumno
+        $alumno = $this->user->get_by_username($_SESSION['username']);
+        $usuario = $alumno;
+        $request = new AsesoriaAlumnoModel();
+        $request->id_usuario = $alumno->id;
+        $asesorias = $request->get_asesorias_alumno();
+        
+        
+        require_once $this->url_templates . "lista_asesorias.php";
     }
     public function inscribe()
     {
@@ -61,7 +78,7 @@ class InscribeController
             if ($asesoria) :
                 $asesoriaAlumnExists = $this->asesoriaAlumno->get_by_asesoria($asesoria->id, $usuario->id);
                 if ($asesoriaAlumnExists) :
-                    echo "Error: ya se encuentra registrado";
+                    require_once "view/error/error.html";
                     exit;
                 endif;
                 $inscribe = new AsesoriaAlumnoModel();
