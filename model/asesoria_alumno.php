@@ -90,7 +90,7 @@ class AsesoriaAlumnoModel extends Crud
     public function get_asesorias_alumno()
     {
         $query = "
-        SELECT users_table.name, users_table.last_name, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.id_horario_materia as materia, asesorias_table.id_usuario as maestro
+        SELECT alumno_asesoria.id, users_table.name, users_table.last_name, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.id_horario_materia as materia, asesorias_table.id_usuario as maestro
         FROM " .self::TABLE.
         " INNER JOIN users_table
         ON alumno_asesoria.id_usuario = users_table.id
@@ -107,6 +107,21 @@ class AsesoriaAlumnoModel extends Crud
             ));
 
             return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            //throw $e;
+            echo $e->getMessage();
+        }
+    }
+    public function quit_asesoria()
+    {
+        try {
+            //code...
+            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET status=? WHERE id=?");
+            $stm->execute(array(
+               
+                $this->status,
+                $this->id
+            ));
         } catch (PDOException $e) {
             //throw $e;
             echo $e->getMessage();

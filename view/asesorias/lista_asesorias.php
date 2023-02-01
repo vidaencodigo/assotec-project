@@ -114,7 +114,7 @@
                                     <td><?= $asesoria->inicio ?></td>
                                     <td><?= $asesoria->fin ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-danger">Desinscribe</a>
+                                        <a href="index.php?controller=inscribe&action=quit&id=<?=$asesoria->id?>" class="btn btn-danger">Desinscribe</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

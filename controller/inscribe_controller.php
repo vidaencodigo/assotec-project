@@ -50,8 +50,8 @@ class InscribeController
         $request = new AsesoriaAlumnoModel();
         $request->id_usuario = $alumno->id;
         $asesorias = $request->get_asesorias_alumno();
-        
-        
+
+
         require_once $this->url_templates . "lista_asesorias.php";
     }
     public function inscribe()
@@ -88,6 +88,44 @@ class InscribeController
 
                 header("Location: index.php");
             endif;
+
+            header("Location: index.php");
+
+        endif;
+    }
+
+    public function quit()
+    {
+        if (!isset($_SESSION['session'])) :
+            exit;
+        endif;
+        if ($_SESSION['rol'] !== "alumno") :
+            exit;
+        endif;
+        $usuario = $this->user->get_by_username($_SESSION['username']);
+        require_once $this->url_templates . "desinscribe.php";
+    }
+    public function post_quit()
+    {
+        if (!isset($_SESSION['session'])) :
+            exit;
+        endif;
+        if ($_SERVER['REQUEST_METHOD'] == "POST") :
+            $token = $_REQUEST['token'];
+            // VALID TOKEN
+            if (!$token || $token !== $_SESSION['token']) :
+                // show an error message 
+                echo '<p class="error">Error: invalid form submission</p>';
+                // return 405 http status code
+                header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
+                exit;
+            endif;
+         
+
+            $asesoria = new AsesoriaAlumnoModel();
+            $asesoria->id = $_REQUEST['id'];
+            $asesoria->status = "inactive";
+            $asesoria->quit_asesoria();
 
             header("Location: index.php");
 
