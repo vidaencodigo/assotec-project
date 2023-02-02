@@ -64,47 +64,76 @@
     </nav>
 
     <div class="container">
-        <section class="action py-5">
-            <h4 class="text-center">Registra materia</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="row mx-auto mt-5">
+            <section class="profile col-4 text-center">
+                <?php if ($usuario->profile_image) : ?>
+                    <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
+                <?php else : ?>
+                    <div style="margin:auto; display:flex; align-items:center;justify-content:center; width:200px; height:200px; border-radius:50%; background-color:#737373; color:#fff;">
+                        no image
+                    </div>
+                    <br>
 
-                <form method="post" action="index.php?controller=subject&action=post_save_subject" class="needs-validation" novalidate>
+                <?php endif; ?>
+                <p style="font-size: 14px;">
+                    <a href="index.php?controller=users&action=change_image_profile">
 
-                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                        Cambiar imagen
+                    </a>
+                </p>
 
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="name" id="name" required>
-                        <div class="invalid-feedback">
-                            Nombre requerido
+                <p>
+                    <?= $usuario->user ?>
+                </p>
+                <p>
+                    <?= $usuario->mail ?>
+                </p>
+
+
+            </section>
+            <section class="action col-8 py-5">
+                <h4 class="text-center">Registra materia</h4>
+                <div class="d-grid gap-2 col-6 mx-auto">
+
+                    <form method="post" action="index.php?controller=subject&action=post_save_subject" class="needs-validation" novalidate>
+
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" id="name" required>
+                            <div class="invalid-feedback">
+                                Nombre requerido
+                            </div>
                         </div>
-                    </div>
 
 
 
 
-                    <div class="center__items">
-                        <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
-                    </div>
+                        <div class="center__items">
+                            <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
+                        </div>
 
-                    <div class="errors py-2">
-                        <?php if (isset($_REQUEST['msg'])) : ?>
-                            <?php if ($_REQUEST['msg'] == "success") : ?>
-                                <div class="alert alert-success" role="alert">
-                                    Materia guardada
-                                </div>
+                        <div class="errors py-2">
+                            <?php if (isset($_REQUEST['msg'])) : ?>
+                                <?php if ($_REQUEST['msg'] == "success") : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        Materia guardada
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($_REQUEST['msg'] == "subject_exists") : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        Materia ya esta registrada
+                                    </div>
+                                <?php endif; ?>
+
                             <?php endif; ?>
-                            <?php if ($_REQUEST['msg'] == "subject_exists") : ?>
-                                <div class="alert alert-danger" role="alert">
-                                    Materia ya esta registrada
-                                </div>
-                            <?php endif; ?>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
 
-                        <?php endif; ?>
-                    </div>
-                </form>
-            </div>
-        </section>
 
 
 

@@ -27,6 +27,11 @@ ALTER TABLE `comentarios_table` ADD CONSTRAINT `asesoria` FOREIGN KEY (`id_aseso
 -- COMENTARIOS
 
 
+ALTER TABLE `videos_table` ADD CONSTRAINT `video maestro id` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
 
 
 

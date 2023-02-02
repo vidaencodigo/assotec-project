@@ -33,6 +33,8 @@ class SubjectController
             header("Location: index.php?controller=index&action=index");
             exit;
         endif;
+
+        $usuario = $this->user->get_by_username($_SESSION['username']);
         require_once($this->url_templates . "nueva_materia.php");
     }
 
