@@ -91,7 +91,7 @@
                 <p>
                     <?= $usuario->mail ?>
                 </p>
-
+                
 
             </section>
             <section class="profile_details col-8 ">

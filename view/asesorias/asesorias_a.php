@@ -101,6 +101,14 @@
                 <p>
                     <?= $usuario->mail ?>
                 </p>
+                
+                <p style="font-size: 14px;">
+                    <a href="index.php?controller=video&action=get_video_list_maestro&id_maestro=<?=$_REQUEST['id_usuario']?>">
+
+                        Ver videos
+                    </a>
+                </p>
+                
 
 
             </section>

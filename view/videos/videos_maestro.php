@@ -92,8 +92,6 @@
                     </a>
                 </p>
 
-                
-
                 <p>
                     <?= $usuario->user ?>
                 </p>
@@ -103,13 +101,50 @@
 
 
             </section>
-            <section class="profile_details col-8 ">
-                <h3 class="my-5 text-center">Asesorias activas</h3>
-                <?php require_once "view/asesorias/asesorias_table.php"; ?>
+            <section class=" col-8 py-5">
+                <h4 class="text-center">Lista de videos</h4>
+                <div class="d-grid gap-2 mx-auto">
+                    <?php if ($videos) : ?>
+                        <div class="row row-cols-3">
+
+
+                            <?php foreach ($videos as $video) : ?>
+                                <?php
+                                $imagen = new GetThumbnail;
+                                $imagen->url = urldecode($video->url);
+                                $imagen->get_thumbnail();
+                                ?>
+                                <div class="col ">
+                                    <div class="card shadow p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                                        <img src="<?php echo $imagen->thumbnail ?>" class="card-img-top" alt="minuatura">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <?php echo $video->titulo ?>
+                                            </h5>
+                                            <p class="card-text">
+                                                <?php echo $video->descripcion ?>
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="card-body">
+                                            <a href="<?=urldecode($video->url);?>" target="_blank" class="card-link">Ver video</a>
+                                            
+                                        </div>
+                                    </div>
+                                    
+
+                
+
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
             </section>
         </div>
     </div>
-    <?php require_once "./view/usuarios/modal_delete.php" ?>
+    
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>

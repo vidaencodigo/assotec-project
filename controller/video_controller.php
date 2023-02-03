@@ -60,6 +60,27 @@ class VideoController
         $videos =  $video->get_all_by_status();
         require_once($this->url_templates . "lista.php");
     }
+    public function get_video_list_maestro()
+    {
+        $_SESSION['token'] =  bin2hex(random_bytes(35));
+        if (!isset($_SESSION['session'])) :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+
+
+
+        if ($_SESSION['rol'] != "alumno") :
+            header("Location: index.php?controller=index&action=index");
+            exit;
+        endif;
+        $usuario = $this->user->get_by_id($_REQUEST['id_maestro']);
+        $video = new Video();
+        $video->id_usuario = $usuario->id;
+        $video->status="active";
+        $videos =  $video->get_all_by_status();
+        require_once($this->url_templates . "videos_maestro.php");
+    }
     public function post_save_video()
     {
         if (!isset($_SESSION['session'])) :
