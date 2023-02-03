@@ -1,6 +1,6 @@
 <?php if (isset($maestros)) : ?>
     <?php if (($maestros)) : ?>
-        <table class="table">
+        <table class="display"  id="table_id">
             <thead>
                 <th>-</th>
                 <th>Nombre Completo</th>
@@ -18,7 +18,7 @@
 
                 $materias = new MaestroModel();
                 foreach ($maestros as $maestro) : ?>
-                    <tr>
+                    <tr> 
                         <td>
                             <?php if ($maestro->profile_image) : ?>
                                 <img src="data:image/png;base64,<?= base64_encode($maestro->profile_image) ?>" class="img-thumbnail" style="width:50px; height:50px;" alt="Imagen de perfil">
@@ -55,3 +55,4 @@
         </table>
     <?php endif; ?>
 <?php endif; ?>
+
