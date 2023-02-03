@@ -51,7 +51,7 @@ class InscribeController
         $request->id_usuario = $alumno->id;
         $request->status = "active";
         $asesorias = $request->get_asesorias_alumno();
-
+        
 
         require_once $this->url_templates . "lista_asesorias.php";
     }

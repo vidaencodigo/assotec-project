@@ -100,6 +100,12 @@
                     <thead>
                         <th>Maestro</th>
                         <th>Materia</th>
+                        <th>
+                            Salón
+                        </th>
+                        <th>
+                            Liga
+                        </th>
                         <th>Dia</th>
                         <th>Hora inicio</th>
                         <th>Hora Fin</th>
@@ -112,7 +118,12 @@
                                 <tr>
                                     <td><?= $this->user->get_by_id($asesoria->maestro)->name ?><br><?= $this->user->get_by_id($asesoria->maestro)->last_name ?></td>
                                     <td><?= $this->subject->get_by_id($asesoria->materia)->name ?></td>
+                                    <td><?= $asesoria->salon ?></td>
+                                    <td>
+                                    <a href="<?php echo $asesoria->url_sesion ?>">Ir</a>    
+                                    </td>
                                     <td><?= $asesoria->dia ?></td>
+                                   
                                     <td><?= $asesoria->inicio ?></td>
                                     <td><?= $asesoria->fin ?></td>
                                     <?php if($asesoria->status !== "inactive"):?>
