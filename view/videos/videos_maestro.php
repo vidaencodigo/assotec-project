@@ -34,7 +34,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_asesorias">Mis asesorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_past_asesorias">Pasadas asesorias</a>
+                    </li>
+
 
 
                 </ul>
@@ -110,15 +116,15 @@
                                                 <?php echo $video->descripcion ?>
                                             </p>
                                         </div>
-                                        
+
                                         <div class="card-body">
-                                            <a href="<?=urldecode($video->url);?>" target="_blank" class="card-link">Ver video</a>
-                                            
+                                            <a href="<?= urldecode($video->url); ?>" target="_blank" class="card-link">Ver video</a>
+
                                         </div>
                                     </div>
-                                    
 
-                
+
+
 
                                 </div>
                             <?php endforeach; ?>
@@ -129,7 +135,7 @@
             </section>
         </div>
     </div>
-    
+
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
