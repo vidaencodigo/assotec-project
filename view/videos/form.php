@@ -39,7 +39,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
-
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
@@ -52,7 +51,6 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
@@ -66,12 +64,10 @@
 
             </div>
         </div>
-
     </nav>
 
     <div class="container">
         <div class="row mx-auto mt-5">
-
             <section class="profile col-4 text-center">
                 <?php if ($usuario->profile_image) : ?>
                     <img src="data:image/png;base64,<?= base64_encode($usuario->profile_image) ?>" class="img-thumbnail" alt="Imagen de perfil">
@@ -98,39 +94,63 @@
 
 
             </section>
-            <section class="profile_details col-8 ">
-                <div class="row">
-                    <div class="col-12">
+            <section class="action col-8 py-5">
+                <h4 class="text-center">Registra video</h4>
+                <div class="d-grid gap-2 mx-auto">
 
-                        <?php if ($_SESSION['rol'] == 'alumno') : ?>
-                            Hola alumno
-                        <?php endif; ?>
-                        <?php if ($_SESSION['rol'] == 'maestro') : ?>
-                            <h3>
+                    <form method="post" action="index.php?controller=video&action=post_save_video" class="needs-validation" novalidate>
 
-                                Mis materias
-                            </h3>
-                            <?php require_once "view/subject/table_subject.php"; ?>
-                        <?php endif; ?>
-                    </div>
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
 
-
-                </div>
-                <hr>
-                <?php if (isset($_REQUEST['msg'])) : ?>
-                    <?php if ($_REQUEST['msg'] == "success_delete_subject") : ?>
-                        <div class="alert alert-success">
-                            Se borro una materia correctamente
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" required autofocus>
+                            <div class="invalid-feedback">
+                                Titulo requerido
+                            </div>
                         </div>
-                    <?php endif; ?>
-                <?php endif; ?>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="url" class="form-label">URL de YouTube</label>
+                            <input type="url" class="form-control" name="url" id="url" placeholder="https://youtube.com/example" required>
+                            <div class="invalid-feedback">
+                                URL requerido
+                            </div>
+                        </div>
 
 
+
+
+
+                        <div class="center__items">
+                            <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
+                        </div>
+
+                        <div class="errors py-2">
+                            <?php if (isset($_REQUEST['msg'])) : ?>
+                                <?php if ($_REQUEST['msg'] == "success") : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        Video guardado
+                                    </div>
+                                <?php endif; ?>
+                               
+
+                            <?php endif; ?>
+                        </div>
+                    </form>
+                </div>
             </section>
         </div>
-    </div>
-    <?php require_once "./view/usuarios/modal_delete.php" ?>
 
+
+
+
+    </div>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
     <script src="assets/js/tooltips.js"></script>

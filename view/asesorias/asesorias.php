@@ -39,17 +39,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
-                       
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
                     </li>
 
 
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        
+
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
@@ -63,7 +66,7 @@
 
             </div>
         </div>
-       
+
     </nav>
 
     <div class="container">
@@ -97,7 +100,7 @@
             </section>
             <section class="profile_details col-8 ">
                 <h3 class="my-5 text-center">Asesorias activas</h3>
-                <?php require_once "view/asesorias/asesorias_table.php";?>
+                <?php require_once "view/asesorias/asesorias_table.php"; ?>
             </section>
         </div>
     </div>

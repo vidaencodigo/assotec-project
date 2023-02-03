@@ -39,17 +39,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_index">Registrar materias</a>
-                       
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
                     </li>
 
 
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        
+
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=users&action=profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ir a mi perfil"><?= $_SESSION['username'] ?></a>
 
@@ -63,7 +66,7 @@
 
             </div>
         </div>
-       
+
     </nav>
 
     <div class="container">
@@ -102,11 +105,11 @@
                         <h3>Edita datos de asesoria <br> <?= $materia->name; ?></h3>
                         <hr>
                         <form action="index.php?controller=asesorias&action=post_edit" method="post" class="needs-validation" novalidate>
-                            <input type="hidden" name="id_asesoria" value="<?= $asesoria->id;?>">
+                            <input type="hidden" name="id_asesoria" value="<?= $asesoria->id; ?>">
                             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                             <div class="mb-3">
                                 <select class="form-select" name="tipo" aria-label="Tipo Asesoria">
-                                <option value="<?= $asesoria->tipo ?? '' ?>" selected>Presencial</option>
+                                    <option value="<?= $asesoria->tipo ?? '' ?>" selected>Presencial</option>
                                     <option value="presencial">Presencial</option>
                                     <option value="virtual">Virtual</option>
 
@@ -127,7 +130,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="day" class="form-label">Selecciona Día</label>
-                                <input type="date" class="form-control" name="day" id="day" value="<?= $asesoria->dia ?? '' ?>" >
+                                <input type="date" class="form-control" name="day" id="day" value="<?= $asesoria->dia ?? '' ?>">
                             </div>
 
                             <div class="mb-3">
@@ -140,12 +143,12 @@
                                 <input type="time" class="form-control" name="horaFin" id="horaFin" value="<?= $asesoria->fin ?? '' ?>" required>
                             </div>
                             <button type="submit" class="btn btn-success">Guardar</button>
-                            <a href="index.php?controller=asesorias&action=get_quit&id=<?=$asesoria->id?>" class="btn btn-warning">Quitar</a>
+                            <a href="index.php?controller=asesorias&action=get_quit&id=<?= $asesoria->id ?>" class="btn btn-warning">Quitar</a>
                         </form>
                     </div>
 
 
-                </div> 
+                </div>
 
 
 
@@ -153,7 +156,7 @@
             </section>
         </div>
     </div>
-    
+
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>

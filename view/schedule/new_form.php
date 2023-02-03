@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
+                    </li>
 
                 </ul>
                 <div class="d-flex">
@@ -142,7 +145,7 @@
                     </div>
 
                     <div class="col-4">
-                        <a href="index.php?controller=asesorias&action=get_new_form&subjectId=<?=$_REQUEST['subjectId'];?>" class="btn btn-success"> Generar asesoria</a>
+                        <a href="index.php?controller=asesorias&action=get_new_form&subjectId=<?= $_REQUEST['subjectId']; ?>" class="btn btn-success"> Generar asesoria</a>
                     </div>
 
 
@@ -162,7 +165,7 @@
                                     <td><?= $day->dia; ?></td>
                                     <td><?= $day->horaInicio; ?></td>
                                     <td><?= $day->horaFin ?></td>
-                                    <td><a href="index.php?controller=schedule&action=get_delete_view&idSchedule=<?=$day->id;?>" class="btn btn-danger">Quitar</a></td>
+                                    <td><a href="index.php?controller=schedule&action=get_delete_view&idSchedule=<?= $day->id; ?>" class="btn btn-danger">Quitar</a></td>
                                 </tr>
                             <?php endforeach; ?>
 

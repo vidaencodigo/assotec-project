@@ -56,6 +56,10 @@
                                 <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
+                            </li>
+
                         <?php endif; ?>
                         <?php if ($_SESSION['rol'] == "alumno") : ?>
                             <li class="nav-item">
