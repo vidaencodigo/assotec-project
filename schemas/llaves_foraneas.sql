@@ -25,11 +25,17 @@ ALTER TABLE `comentarios_table` ADD CONSTRAINT `asesoria` FOREIGN KEY (`id_aseso
 
 
 
-ALTER TABLE `videos_table` ADD CONSTRAINT `video_maestro_id` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 */
 
 
 -- COMENTARIOS
+
+/**
+*   03/02/2023
+*   ALTER TABLE `videos_table` ADD CONSTRAINT `video_maestro_id` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+/
+
 
 
 
