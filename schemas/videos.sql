@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `videos_table` (
     `created_at` TIMESTAMP DEFAULT NOW(),
     `updated_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
    
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COMMENT='almacena calificaion de asesoria';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='almacena calificaion de asesoria';
 
 
 ALTER TABLE `videos_table`

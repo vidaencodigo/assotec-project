@@ -97,55 +97,45 @@
 
 
             </section>
-            <section class="action col-8 py-5">
-                <h4 class="text-center">Registra video</h4>
+            <section class=" col-8 py-5">
+                <h4 class="text-center">Lista de videos</h4>
                 <div class="d-grid gap-2 mx-auto">
-
-                    <form method="post" action="index.php?controller=video&action=post_save_video" class="needs-validation" novalidate>
-
-                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
-
-                        <div class="mb-3">
-                            <label for="titulo" class="form-label">Titulo</label>
-                            <input type="text" class="form-control" name="titulo" id="titulo" required autofocus>
-                            <div class="invalid-feedback">
-                                Titulo requerido
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
-
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="url" class="form-label">URL de YouTube</label>
-                            <input type="url" class="form-control" name="url" id="url" placeholder="https://youtube.com/example" required>
-                            <div class="invalid-feedback">
-                                URL requerido
-                            </div>
-                        </div>
+                    <?php if ($videos) : ?>
+                        <div class="row row-cols-3">
 
 
-
-
-
-                        <div class="center__items">
-                            <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
-                        </div>
-
-                        <div class="errors py-2">
-                            <?php if (isset($_REQUEST['msg'])) : ?>
-                                <?php if ($_REQUEST['msg'] == "success") : ?>
-                                    <div class="alert alert-success" role="alert">
-                                        Video guardado
+                            <?php foreach ($videos as $video) : ?>
+                                <?php
+                                $imagen = new GetThumbnail;
+                                $imagen->url = urldecode($video->url);
+                                $imagen->get_thumbnail();
+                                ?>
+                                <div class="col ">
+                                    <div class="card shadow p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                                        <img src="<?php echo $imagen->thumbnail ?>" class="card-img-top" alt="minuatura">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <?php echo $video->titulo ?>
+                                            </h5>
+                                            <p class="card-text">
+                                                <?php echo $video->descripcion ?>
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="card-body">
+                                            <a href="<?=urldecode($video->url);?>" target="_blank" class="card-link">Ver video</a>
+                                            
+                                        </div>
                                     </div>
-                                <?php endif; ?>
+                                    
 
+                
 
-                            <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    </form>
+                    <?php endif; ?>
+
                 </div>
             </section>
         </div>

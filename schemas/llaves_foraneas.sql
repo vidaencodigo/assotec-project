@@ -21,13 +21,17 @@ ALTER TABLE `alumno_asesoria` ADD CONSTRAINT `asesoria alumno id` FOREIGN KEY (`
 
 ALTER TABLE `comentarios_table` ADD CONSTRAINT `usuario_asesoria` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `comentarios_table` ADD CONSTRAINT `asesoria` FOREIGN KEY (`id_asesoria`) REFERENCES `agenda_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+ALTER TABLE `videos_table` ADD CONSTRAINT `video_maestro_id` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 */
 
 
 -- COMENTARIOS
 
 
-ALTER TABLE `videos_table` ADD CONSTRAINT `video maestro id` FOREIGN KEY (`id_usuario`) REFERENCES `users_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 

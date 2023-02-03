@@ -40,6 +40,21 @@ class Video extends Crud
             echo $e->getMessage();
         }
     }
+    public function get_all_by_status()
+    {
+        /** RETORNA TODOS LOS ELEMENTOS DE LA TABLAS */
+        try {
+            //code...
+            $stm = $this->pdo->prepare("SELECT * FROM " .  self::TABLE . " WHERE id_usuario=? AND status=? ORDER BY id DESC");
+            $stm->execute(array(
+                $this->id_usuario,
+                $this->status
+            ));
+            return $stm->fetchall(PDO::FETCH_OBJ);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
     public function update()
     {
     }

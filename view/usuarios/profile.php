@@ -47,6 +47,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_video_list">Mis Videos</a>
+                        </li>
 
                     <?php endif; ?>
 
