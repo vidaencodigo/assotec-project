@@ -112,7 +112,7 @@
                             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                             <div class="mb-3">
                                 <select class="form-select" name="tipo" aria-label="Tipo Asesoria">
-                                    <option value="<?= $asesoria->tipo ?? '' ?>" selected>Presencial</option>
+                                    <option value="<?= $asesoria->tipo ?? '' ?>" selected><?= $asesoria->tipo ?? '' ?></option>
                                     <option value="presencial">Presencial</option>
                                     <option value="virtual">Virtual</option>
 

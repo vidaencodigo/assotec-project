@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.css">
+    <script src="libs/fontawesome/js/all.js"></script>
     <style>
         h1 {
             font-size: 52px;
@@ -109,11 +111,13 @@
             </section>
         </div>
     </div>
-    <?php require_once "./view/usuarios/modal_delete.php" ?>
+    
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
     <script src="assets/js/tooltips.js"></script>
+
+    
 </body>
 
 </html>
