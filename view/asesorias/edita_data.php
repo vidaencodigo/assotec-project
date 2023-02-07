@@ -120,30 +120,30 @@
                             </div>
                             <div class="mb-3">
                                 <label for="salon" class="form-label">Salón</label>
-                                <input type="text" class="form-control" id="salon" name="salon" placeholder="Salón" value="<?= $asesoria->salon ?? '' ?>">
+                                <input type="text" class="form-control" id="salon" name="salon" placeholder="Salón" value="<?= $asesoria->salon  ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="desc" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="desc" name="descripcion" rows="3" <?= $asesoria->descripcion ?? '' ?>></textarea>
+                                <textarea class="form-control" id="desc" name="descripcion" rows="3" <?= $asesoria->descripcion  ?>></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="url" class="form-label">Liga sesión</label>
-                                <input type="url" class="form-control" id="url" name="url" placeholder="http://www.example.com" <?= $asesoria->url_sesion ?? '' ?>>
+                                <input type="url" class="form-control" id="url" name="url" placeholder="http://www.example.com" value="<?= $asesoria->url_sesion  ?>" >
                             </div>
                             <div class="mb-3">
                                 <label for="day" class="form-label">Selecciona Día</label>
-                                <input type="date" class="form-control" name="day" id="day" value="<?= $asesoria->dia ?? '' ?>">
+                                <input type="date" class="form-control" name="day" id="day" value="<?= $asesoria->dia  ?>">
                             </div>
 
                             <div class="mb-3">
                                 <label for="horaInicio" class="form-label">Hora inicio</label>
-                                <input type="time" class="form-control" name="horaInicio" id="horaInicio" value="<?= $asesoria->inicio ?? '' ?>" required>
+                                <input type="time" class="form-control" name="horaInicio" id="horaInicio" value="<?= $asesoria->inicio  ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Hora fin</label>
-                                <input type="time" class="form-control" name="horaFin" id="horaFin" value="<?= $asesoria->fin ?? '' ?>" required>
+                                <input type="time" class="form-control" name="horaFin" id="horaFin" value="<?= $asesoria->fin  ?>" required>
                             </div>
                             <button type="submit" class="btn btn-success">Guardar</button>
                             <a href="index.php?controller=asesorias&action=get_quit&id=<?= $asesoria->id ?>" class="btn btn-warning">Quitar</a>

@@ -109,7 +109,11 @@ class AsesoriaModel extends Crud
 
     public function list_asesoria($id)
     {
-        $query = "SELECT asesorias_table.id,  asesorias_table.id_horario_materia as materia_id,  materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status FROM "
+        $query = "SELECT asesorias_table.id,  asesorias_table.id_horario_materia as materia_id,  
+        materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, 
+        asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status,
+        asesorias_table.url_sesion,  asesorias_table.descripcion 
+        FROM "
             . self::TABLE .
             " INNER JOIN materias_agenda_table 
         ON asesorias_table.id_horario_materia = materias_agenda_table.id 

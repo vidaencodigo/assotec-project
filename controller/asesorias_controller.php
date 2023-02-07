@@ -57,7 +57,7 @@ class AsesoriasController
         endif;
         $usuario = $this->user->get_by_username($_SESSION['username']);
         $asesoria = $this->asesoria->list_asesoria($_REQUEST['id_asesoria']);
-        $materia = $this->subject->get_by_id($asesoria->materia_id);
+        $materia = $this->subject->get_by_id($asesoria->materia_id); 
 
 
         require_once $this->url_templates . "edita_data.php";
