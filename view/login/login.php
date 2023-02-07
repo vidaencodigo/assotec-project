@@ -68,7 +68,11 @@
                 </div>
                 <div class="errors py-2">
                     <?php if (isset($_REQUEST['msg'])) : ?>
-
+                        <?php if ($_REQUEST['msg'] == "success") : ?>
+                            <div class="alert alert-success" role="alert">
+                                Se creo usuario, puede iniciar sesión
+                            </div>
+                        <?php endif; ?>
                         <?php if ($_REQUEST['msg'] == "pwderr") : ?>
                             <div class="alert alert-danger" role="alert">
                                 Credenciales invalidas, vuelve a intentar

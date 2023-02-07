@@ -204,7 +204,7 @@ class UsersController
                     $usuario->password = password_hash($password, PASSWORD_DEFAULT);
                     $usuario->user_type = "alumno";
                     $usuario->create();
-                    header("Location: index.php?controller=users&action=index&msg=success");
+                    header("Location: index.php?controller=login&action=index&msg=success");
                 }
             } else {
                 header("Location: index.php?controller=users&action=index&msg=pwderr");
