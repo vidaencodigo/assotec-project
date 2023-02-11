@@ -69,7 +69,7 @@ class AsesoriaAlumnoModel extends Crud
     public function get_alumnos_by_asesoria()
     {
         $query = "
-        SELECT users_table.name as Name, users_table.last_name as Last_name FROM 
+        SELECT users_table.name as Name, users_table.last_name as Last_name, users_table.semestre, users_table.carrera FROM 
         " . self::TABLE .
             " INNER JOIN users_table 
         ON alumno_asesoria.id_usuario = users_table.id 

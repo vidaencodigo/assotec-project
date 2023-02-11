@@ -107,6 +107,8 @@
                     <thead>
                         <th>Nombre</th>
                         <th>Apellidos</th>
+                        <th>Semestre</th>
+                        <th>Carrera</th>
                     </thead>
                     <tbody>
                         <?php if ($alumnos) : ?>
@@ -114,6 +116,8 @@
                                 <tr>
                                     <td><?= $alumno->Name ?></td>
                                     <td><?= $alumno->Last_name ?></td>
+                                    <td><?= $alumno->semestre ?></td>
+                                    <td><?= $alumno->carrera ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

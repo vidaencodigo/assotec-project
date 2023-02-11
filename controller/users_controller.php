@@ -104,6 +104,10 @@ class UsersController
             $usuario->id = $id_user;
             $usuario->name = $_REQUEST['name'];
             $usuario->last_name = $_REQUEST['last_name'];
+            if($_SESSION['rol']=="alumno"):
+                $usuario->semestre=$_REQUEST['semestre'];
+                $usuario->carrera=$_REQUEST['carrera'];
+            endif;
             $usuario->update_profile();
 
             header("Location: index.php?controller=users&action=profile");

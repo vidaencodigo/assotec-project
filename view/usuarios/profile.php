@@ -123,6 +123,22 @@
                                     Apellidos requerido
                                 </div>
                             </div>
+                            <?php if ($_SESSION['rol'] == 'alumno') : ?>
+                                <div class="mb-3">
+                                    <label for="semestreo" class="form-label">Semestre</label>
+                                    <input type="text" class="form-control" name="semestre" id="semestre" value="<?= $usuario->semestre ?>" required>
+                                    <div class="invalid-feedback">
+                                        Semestre requerido
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="carrera" class="form-label">Carrera</label>
+                                    <input type="text" class="form-control" name="carrera" id="carrera" value="<?= $usuario->carrera ?>" required>
+                                    <div class="invalid-feedback">
+                                        Carrera requerido
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <p>
                                 <button type="submit" class="btn btn-success" style="width: 100%;">Guardar cambios</button>
                             </p>

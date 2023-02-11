@@ -39,3 +39,11 @@ ALTER TABLE `users_table`
         updated_at TIMESTAMP NOT NULL
             DEFAULT CURRENT_TIMESTAMP
             ON UPDATE CURRENT_TIMESTAMP;
+
+/* AGREGAR EN SQL */
+ALTER TABLE `users_table`
+  `semestre` VARCHAR(255) NOT NULL;
+  ALTER TABLE `users_table`
+  `carrera` VARCHAR(255) NOT NULL;
+
+

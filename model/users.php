@@ -14,6 +14,8 @@ class User extends Crud
   public $created_at;
   public $updated_at;
   public $status;
+  public $semestre;
+  public $carrera;
   const TABLE = 'users_table';
   private $pdo;
   public function __construct()
@@ -125,11 +127,13 @@ class User extends Crud
     // modifica los campos no sencibles del usuario
     try {
       //code...
-      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET name=?, last_name=? WHERE id=?");
+      $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET name=?, last_name=?, semestre=?, carrera=? WHERE id=?");
       $stm->execute(array(
        
         $this->name,
         $this->last_name,
+        $this->semestre,
+        $this->carrera,
         $this->id
       ));
     } catch (PDOException $e) {
