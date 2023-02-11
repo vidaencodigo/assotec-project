@@ -10,13 +10,8 @@
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
     <style>
-        h1 {
-            font-size: 52px;
-        }
-
-        .action p {
-            color: #737373;
-            font-size: 30px;
+        .full{
+            width: 100%;
         }
     </style>
 </head>
@@ -111,7 +106,7 @@
                                 $imagen->get_thumbnail();
                                 ?>
                                 <div class="col ">
-                                    <div class="card shadow p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                                    <div class="video_card card shadow p-3 mb-5 bg-body rounded " style="width: 18rem;">
                                         <img src="<?php echo $imagen->thumbnail ?>" class="card-img-top" alt="minuatura">
                                         <div class="card-body">
                                             <h5 class="card-title">
@@ -123,7 +118,7 @@
                                         </div>
                                         
                                         <div class="card-body">
-                                            <a href="<?=urldecode($video->url);?>" target="_blank" class="card-link">Ver video</a>
+                                            <a href="<?=urldecode($video->url);?>" target="_blank" class="btn btn-success full">Ver video</a>
                                             
                                         </div>
                                     </div>

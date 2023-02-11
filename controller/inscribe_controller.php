@@ -25,7 +25,7 @@ class InscribeController
     {
         if (!isset($_SESSION['session'])) :
             exit;
-        endif;
+        endif; 
         if ($_SESSION['rol'] !== "maestro") :
             exit;
         endif;
