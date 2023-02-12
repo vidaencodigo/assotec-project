@@ -145,6 +145,10 @@
                                 <label for="exampleFormControlInput1" class="form-label">Hora fin</label>
                                 <input type="time" class="form-control" name="horaFin" id="horaFin" value="<?= $asesoria->fin  ?>" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="limimte" class="form-label">Limite de alumnos</label>
+                                <input type="number" class="form-control" name="limite" id="horaFin" value="<?= $asesoria->limite  ?>" required>
+                            </div>
                             <button type="submit" class="btn btn-success">Guardar</button>
                             <a href="index.php?controller=asesorias&action=get_quit&id=<?= $asesoria->id ?>" class="btn btn-warning">Quitar</a>
                         </form>

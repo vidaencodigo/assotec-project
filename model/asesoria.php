@@ -17,6 +17,7 @@ class AsesoriaModel extends Crud
     public $dia;
     public $inicio;
     public $fin;
+    public $limite;
     const TABLE = 'asesorias_table';
     private $pdo;
     public function __construct()
@@ -58,7 +59,7 @@ class AsesoriaModel extends Crud
     {
         try {
             //code...
-            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET tipo=?, salon=?, descripcion=?, url_sesion=?, dia=?, inicio=?, fin=? WHERE id=?");
+            $stm = $this->pdo->prepare("UPDATE " . self::TABLE . " SET tipo=?, salon=?, descripcion=?, url_sesion=?, dia=?, inicio=?, fin=?, limite=? WHERE id=?");
             $stm->execute(array(
                 $this->tipo,
                 $this->salon,
@@ -67,6 +68,7 @@ class AsesoriaModel extends Crud
                 $this->dia,
                 $this->inicio,
                 $this->fin,
+                $this->limite,
                 $this->id
             ));
         } catch (PDOException $e) {
@@ -122,7 +124,7 @@ class AsesoriaModel extends Crud
         $query = "SELECT asesorias_table.id,  asesorias_table.id_horario_materia as materia_id,  
         materias_agenda_table.name as materia, asesorias_table.tipo, asesorias_table.salon, 
         asesorias_table.dia, asesorias_table.inicio, asesorias_table.fin, asesorias_table.status,
-        asesorias_table.url_sesion,  asesorias_table.descripcion 
+        asesorias_table.url_sesion,  asesorias_table.descripcion, asesorias_table.limite 
         FROM "
             . self::TABLE .
             " INNER JOIN materias_agenda_table 

@@ -99,7 +99,7 @@ class InscribeController
                 if ($asesoriaAlumnExists) :
                     require_once "view/error/error.html";
                     exit;
-                endif;
+                endif; 
                 $inscribe = new AsesoriaAlumnoModel();
                 $inscribe->id_usuario = $usuario->id;
                 $inscribe->id_asesoria =  $asesoria->id;

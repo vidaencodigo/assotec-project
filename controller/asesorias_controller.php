@@ -140,6 +140,7 @@ class AsesoriasController
             $asesoria->dia = $_REQUEST['day'];
             $asesoria->inicio = $_REQUEST['horaInicio'];
             $asesoria->fin = $_REQUEST['horaFin'];
+            $asesoria->limite = $_REQUEST['limite'];
             $asesoria->edit();
             header("Location: index.php?controller=asesorias&action=get_all_asesorias");
 
