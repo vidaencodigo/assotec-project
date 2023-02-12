@@ -130,6 +130,7 @@
                                     <td>
                                         <a href="index.php?controller=inscribe&action=quit&id=<?=$asesoria->id?>" class="btn btn-danger">Desinscribe</a>
                                     </td><?php endif;?>
+
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

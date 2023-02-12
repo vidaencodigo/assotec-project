@@ -13,7 +13,7 @@
                     Inscritos
                 </th>
             <?php endif; ?>
-
+            <th>Disponibles</th>
             <th>-</th>
             <th></th>
         </thead>
@@ -29,9 +29,7 @@
                             inicio='<?= $asesoria->inicio ?>',
                             fin='<?= $asesoria->fin ?>',
                             url='<?= $asesoria->url_sesion ?>',
-                            descripcion='<?= $asesoria->descripcion ?>')" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#dataAsesoria">
+                            descripcion='<?= $asesoria->descripcion ?>')" data-bs-toggle="modal" data-bs-target="#dataAsesoria">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </td>
@@ -51,6 +49,7 @@
                     </td>
                     <td><?= $asesoria->inicio ?></td>
                     <td><?= $asesoria->fin ?></td>
+
                     <?php if ($_SESSION['rol'] == 'maestro') : ?>
                         <td>
                             <h3>
@@ -65,6 +64,16 @@
                             </h3>
                         </td>
                     <?php endif; ?>
+                    <td>
+                        <h3>
+
+                            <span class="badge bg-secondary">
+                                <?= $asesoria->disponibles ?>
+                            </span>
+
+                        </h3>
+
+                    </td>
                     <td>
                         <?php if ($_SESSION['rol'] == 'maestro') : ?>
                             <a href="index.php?controller=asesorias&action=get_asesoria_details&id_asesoria=<?= $asesoria->id ?>" class="btn btn-outline-info">Editar</a>
@@ -143,11 +152,11 @@
 
         titulo.innerHTML = materia;
         tipo_a.innerHTML = tipo;
-        salon_a.innerHTML=salon;
-        fecha_a.innerHTML=fecha;
-        inicio_a.innerHTML=inicio;
-        fin_a.innerHTML=fin;
-        descripcion_a.innerHTML=descripcion;
+        salon_a.innerHTML = salon;
+        fecha_a.innerHTML = fecha;
+        inicio_a.innerHTML = inicio;
+        fin_a.innerHTML = fin;
+        descripcion_a.innerHTML = descripcion;
         link.setAttribute('href', url);
         link.setAttribute('target', "_blank");
     }

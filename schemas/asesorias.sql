@@ -40,3 +40,8 @@ ADD fin time;
 ALTER TABLE asesorias_table
     CHANGE dia  
         dia TIME;
+
+
+
+ALTER TABLE asesorias_table
+ADD limite INT NOT NULL DEFAULT 20;

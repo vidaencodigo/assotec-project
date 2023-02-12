@@ -97,10 +97,14 @@ class AsesoriaModel extends Crud
         materias_agenda_table.name as materia,
         asesorias_table.url_sesion, asesorias_table.tipo, 
         asesorias_table.salon, asesorias_table.dia, asesorias_table.inicio, 
-        asesorias_table.fin, asesorias_table.status FROM "
+        asesorias_table.fin, asesorias_table.status, asesorias_table.limite,
+        asesorias_table.limite - COUNT(alumno_asesoria.id_asesoria) as disponibles
+         FROM "
             . self::TABLE .
             " INNER JOIN materias_agenda_table 
-        ON asesorias_table.id_horario_materia = materias_agenda_table.id 
+        ON asesorias_table.id_horario_materia = materias_agenda_table.id
+        LEFT JOIN alumno_asesoria 
+        ON alumno_asesoria.id_asesoria = asesorias_table.id 
         WHERE asesorias_table.status=? AND asesorias_table.id_usuario=?";
         try {
             //code...
