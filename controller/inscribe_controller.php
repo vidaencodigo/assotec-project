@@ -25,7 +25,7 @@ class InscribeController
     {
         if (!isset($_SESSION['session'])) :
             exit;
-        endif; 
+        endif;
         if ($_SESSION['rol'] !== "maestro") :
             exit;
         endif;
@@ -51,7 +51,7 @@ class InscribeController
         $request->id_usuario = $alumno->id;
         $request->status = "active";
         $asesorias = $request->get_asesorias_alumno();
-        
+
 
         require_once $this->url_templates . "lista_asesorias.php";
     }
@@ -99,16 +99,23 @@ class InscribeController
                 if ($asesoriaAlumnExists) :
                     require_once "view/error/error.html";
                     exit;
-                endif; 
+                endif;
+                $asesorias = new AsesoriaModel();
+                $limite = $asesorias->get_limite_actual($asesoria->id);
+
                 $inscribe = new AsesoriaAlumnoModel();
                 $inscribe->id_usuario = $usuario->id;
                 $inscribe->id_asesoria =  $asesoria->id;
+                if($limite->disponibles ==  0):
+                    require_once "view/error/limite_error.html";
+                    exit;
+                endif;
                 $inscribe->create();
-
+                
                 header("Location: index.php");
             endif;
 
-            header("Location: index.php");
+        //header("Location: index.php");
 
         endif;
     }
@@ -139,7 +146,7 @@ class InscribeController
                 header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
                 exit;
             endif;
-         
+
 
             $asesoria = new AsesoriaAlumnoModel();
             $asesoria->id = $_REQUEST['id'];

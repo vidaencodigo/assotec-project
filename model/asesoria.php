@@ -140,4 +140,27 @@ class AsesoriaModel extends Crud
             echo $e->getMessage();
         }
     }
+
+    public function get_limite_actual($id)
+    {
+        $query = "SELECT asesorias_table.limite - COUNT(alumno_asesoria.id_asesoria) as disponibles
+        FROM " . self::TABLE .
+            " INNER JOIN materias_agenda_table 
+        ON asesorias_table.id_horario_materia = materias_agenda_table.id
+        LEFT JOIN alumno_asesoria 
+        ON alumno_asesoria.id_asesoria = asesorias_table.id  
+        WHERE asesorias_table.status=? AND asesorias_table.id=?";
+
+
+
+        try {
+            //code...
+
+            $stm = $this->pdo->prepare($query);
+            $stm->execute(array("active", $id));
+            return $stm->fetch(PDO::FETCH_OBJ);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
