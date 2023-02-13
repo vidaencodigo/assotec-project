@@ -118,7 +118,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <a href="<?= urldecode($video->url); ?>" target="_blank" class="card-link">Ver video</a>
+                                            <a href="<?= urldecode($video->url); ?>" target="_blank" class="btn btn-secondary" style="width:100%;">Ver video</a>
 
                                         </div>
                                     </div>

@@ -26,8 +26,21 @@ class CategoriaModel extends Crud
     {
         try {
             //code...
-            $stm = $this->pdo->prepare("SELECT * FROM ". self::TABLE ." WHERE status=?");
+            $stm = $this->pdo->prepare("SELECT * FROM ". self::TABLE ." WHERE status=? ORDER BY id DESC");
             $stm->execute(array('active'));
+            return $stm->fetchall(PDO::FETCH_OBJ);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function get_all_by_user($user)
+    {
+        try {
+            //code...
+            $stm = $this->pdo->prepare("SELECT * FROM ". self::TABLE ." WHERE id_usuario=? AND status=? ORDER BY id DESC");
+            $stm->execute(array(
+                $user,
+                'active'));
             return $stm->fetchall(PDO::FETCH_OBJ);
         } catch (\PDOException $e) {
             echo $e->getMessage();

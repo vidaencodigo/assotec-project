@@ -20,6 +20,11 @@
             color: #737373;
             font-size: 30px;
         }
+
+        .tmb {
+            width: 90px;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -88,45 +93,46 @@
                     <?= $usuario->user ?>
                 </p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#categoriaModal">Nueva Categoria(carpeta)</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#elementoModal">Nuevo Video</a>
 
                 </div>
             </section>
             <section class="profile_details col-8 ">
-                <h3 class="my-5 text-center">Carpetas</h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php?controller=categorias&action=show_index"><?= $categoria->nombre ?></a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $categoria->id ?></li>
+                    </ol>
+                </nav>
                 <hr>
                 <table class="table">
                     <thead>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            Fecha creación
-                        </th>
-                        <th></th>
+                        <th>Miniatura</th>
+                        <th>Titulo</th>
+                        <th>Acciones</th>
                     </thead>
                     <tbody>
-                        <?php if ($categorias) : ?>
-                            <?php foreach ($categorias as $categoria) : ?>
+                        <?php if ($elementos_categoria) : ?>
+                            <?php foreach ($elementos_categoria as $categoria) : ?>
+                                <?php
+                                $imagen = new GetThumbnail;
+                                $imagen->url = urldecode($categoria->url);
+                                $imagen->get_thumbnail();
+                                ?>
                                 <tr>
-
                                     <td>
-                                        <i class="fa-solid fa-folder"></i>
-                                        <?= $categoria->nombre; ?>
+                                        <img class="tmb" src="<?php echo $imagen->thumbnail ?>" alt="minuatura">
                                     </td>
+                                    <td><?= $categoria->titulo ?></td>
                                     <td>
-                                        <?php
-                                        echo date("M j Y g:i A", strtotime($categoria->created_at)); ?>
-                                    </td>
-                                    <td>
-                                        <a href="index.php?controller=categorias&action=nuevo_elemento&id=<?=$categoria->id?>">
-
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
+                                        <a href="<?= urldecode($categoria->url) ?>" target="_blank" class="btn btn-secondary">Ver video</a>
+                                        <!--
+                                        <a href="#" class="btn btn-outline-danger">Eliminar (<?= $categoria->id_video ?>)</a>
+                            -->
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </section>
@@ -134,30 +140,65 @@
     </div>
 
 
-    <div class="modal fade" id="categoriaModal" tabindex="-1" aria-labelledby="categoriaModalLabel" aria-hidden="true">
+    <div class="modal fade" id="elementoModal" tabindex="-1" aria-labelledby="elementoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="categoriaModalLabel">Nueva Categoría</h5>
+                    <h5 class="modal-title" id="categoriaModalLabel">Nuevo Video</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="index.php?controller=categorias&action=save_categoria" method="post" class="needs-validation" novalidate>
+                    <form method="post" action="index.php?controller=categorias&action=post_guarda_elemento" class="needs-validation" novalidate>
+
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                        <input type="hidden" name="id_categoria" value="<?= $categoria->id ?>">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="name" id="name" required autofocus>
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" required autofocus>
                             <div class="invalid-feedback">
-                                Nombre requerido
+                                Titulo requerido
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="url" class="form-label">URL de YouTube</label>
+                            <input type="url" class="form-control" name="url" id="url" placeholder="https://youtube.com/example" required>
+                            <div class="invalid-feedback">
+                                URL requerido
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="center__items">
+                            <button type="submit" style="width:100%" class="btn btn-max-width btn-primary">Guardar</button>
+                        </div>
+
+                        <div class="errors py-2">
+                            <?php if (isset($_REQUEST['msg'])) : ?>
+                                <?php if ($_REQUEST['msg'] == "success") : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        Video guardado
+                                    </div>
+                                <?php endif; ?>
+
+
+                            <?php endif; ?>
+                        </div>
+                    </form>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-                </form>
+
             </div>
         </div>
     </div>
