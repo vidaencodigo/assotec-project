@@ -92,18 +92,25 @@
                 <p>
                     <?= $usuario->user ?>
                 </p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#elementoModal">Nuevo Video</a>
-
-                </div>
+               
             </section>
             <section class="profile_details col-8 ">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php?controller=categorias&action=show_index"><?= $categoria->nombre ?></a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><?= $categoria->id ?></li>
+                        <li class="breadcrumb-item active" aria-current="page"></li>
+                        <!--<li class="breadcrumb-item active" aria-current="page"><?= $categoria->id ?></li>-->
                     </ol>
                 </nav>
+                <br>
+                <h3>
+                    Lista de videos
+                    <a href="#" class=" btn-link" data-bs-toggle="modal" data-bs-target="#elementoModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Nuevo video">
+                        <span class="badge bg-success">
+                            <i class="fa-solid fa-video"></i>
+                        </span>
+                    </a>
+                </h3>
                 <hr>
                 <table class="table">
                     <thead>

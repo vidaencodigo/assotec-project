@@ -87,13 +87,18 @@
                 <p>
                     <?= $usuario->user ?>
                 </p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#categoriaModal">Nueva Categoria(carpeta)</a>
 
-                </div>
             </section>
             <section class="profile_details col-8 ">
-                <h3 class="my-5 text-center">Carpetas</h3>
+                <h3 class="my-5 text-center">
+
+                    Carpetas
+                    <a href="#" class=" btn-link" data-bs-toggle="modal" data-bs-target="#categoriaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Crea nueva categoría(carpeta)">
+                        <span class="badge bg-primary">
+                            <i class="fa-solid fa-folder-plus"></i>
+                        </span>
+                    </a>
+                </h3>
                 <hr>
                 <table class="table">
                     <thead>
@@ -119,7 +124,7 @@
                                         echo date("M j Y g:i A", strtotime($categoria->created_at)); ?>
                                     </td>
                                     <td>
-                                        <a href="index.php?controller=categorias&action=nuevo_elemento&id=<?=$categoria->id?>">
+                                        <a href="index.php?controller=categorias&action=nuevo_elemento&id=<?= $categoria->id ?>">
 
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
@@ -138,7 +143,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="categoriaModalLabel">Nueva Categoría</h5>
+                    <h5 class="modal-title" id="categoriaModalLabel">Nueva Categoría </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
