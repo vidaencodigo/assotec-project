@@ -45,10 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_video_list">Mis Videos</a>
+                        <a class="nav-link active" aria-current="page" href="index.php?controller=categorias&action=show_index">Multimedia</a>
                     </li>
 
 
@@ -129,7 +126,7 @@
 
                             <div class="mb-3">
                                 <label for="url" class="form-label">Liga sesión</label>
-                                <input type="url" class="form-control" id="url" name="url" placeholder="http://www.example.com" value="<?= $asesoria->url_sesion  ?>" >
+                                <input type="url" class="form-control" id="url" name="url" placeholder="http://www.example.com" value="<?= $asesoria->url_sesion  ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="day" class="form-label">Selecciona Día</label>

@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.css">
+    <script src="libs/fontawesome/js/all.js"></script>
     <style>
         h1 {
             font-size: 52px;
@@ -82,39 +84,44 @@
                     <br>
 
                 <?php endif; ?>
-                <p style="font-size: 14px;">
-                    <a href="index.php?controller=users&action=change_image_profile">
-
-                        Cambiar imagen
-                    </a>
-                </p>
-
                 <p>
                     <?= $usuario->user ?>
                 </p>
-                <p>
-                    <?= $usuario->mail ?>
-                </p>
-
-
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#categoriaModal">Nueva Categoria</a>
+                    <a href="index.php?controller=video&action=get_form" class="list-group-item list-group-item-action">Nuevo Video</a>
+                    <a href="index.php?controller=video&action=get_video_list" class="list-group-item list-group-item-action">Videos</a>
+                </div>
             </section>
             <section class="profile_details col-8 ">
-                <h3 class="my-5 text-center">Alúmnos en <br> <?= $materia->name ?></h3>
+                <h3 class="my-5 text-center">Asesorias activas</h3>
+                <hr>
                 <table class="table">
                     <thead>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Semestre</th>
-                        <th>Carrera</th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Fecha creación
+                        </th>
+                        <th></th>
                     </thead>
                     <tbody>
-                        <?php if ($alumnos) : ?>
-                            <?php foreach ($alumnos as $alumno) : ?>
+                        <?php if ($categorias) : ?>
+                            <?php foreach ($categorias as $categoria) : ?>
                                 <tr>
-                                    <td><?= $alumno->Name ?></td>
-                                    <td><?= $alumno->Last_name ?></td>
-                                    <td><?= $alumno->semestre ?></td>
-                                    <td><?= $alumno->carrera ?></td>
+
+                                    <td>
+                                        <i class="fa-solid fa-folder"></i>
+                                        <?= $categoria->nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo date("M j Y g:i A", strtotime($categoria->created_at)); ?>
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-eye"></i>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -123,11 +130,41 @@
             </section>
         </div>
     </div>
-    <?php require_once "./view/usuarios/modal_delete.php" ?>
+
+
+    <div class="modal fade" id="categoriaModal" tabindex="-1" aria-labelledby="categoriaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoriaModalLabel">Nueva Categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="index.php?controller=categorias&action=save_categoria" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" id="name" required autofocus>
+                            <div class="invalid-feedback">
+                                Nombre requerido
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/form_validate.js"></script>
     <script src="assets/js/tooltips.js"></script>
+
+
 </body>
 
 </html>

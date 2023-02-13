@@ -35,7 +35,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
                     <?php if ($_SESSION['rol'] == "alumno") : ?>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php?controller=inscribe&action=get_asesorias">Mis asesorias</a>
                         </li>
@@ -52,11 +52,10 @@
                             <a class="nav-link active" aria-current="page" href="index.php?controller=subject&action=get_user_subjects">Mis materias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_form">Nuevo Video</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?controller=categorias&action=show_index">Multimedia</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?controller=video&action=get_video_list">Mis Videos</a>
-                        </li>
+                        
+                        
                     <?php endif; ?>
 
 
@@ -101,14 +100,14 @@
                 <p>
                     <?= $usuario->mail ?>
                 </p>
-                
+
                 <p style="font-size: 14px;">
-                    <a href="index.php?controller=video&action=get_video_list_maestro&id_maestro=<?=$_REQUEST['id_usuario']?>">
+                    <a href="index.php?controller=video&action=get_video_list_maestro&id_maestro=<?= $_REQUEST['id_usuario'] ?>">
 
                         Ver videos
                     </a>
                 </p>
-                
+
 
 
             </section>
